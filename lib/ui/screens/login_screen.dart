@@ -1,5 +1,7 @@
+import 'package:c4sport_app/ui/screens/home_screen.dart';
 import 'package:c4sport_app/ui/widgets/social_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 /*
 ╔═══════════════════════════════════════════════════╗
@@ -9,8 +11,8 @@ import 'package:flutter/material.dart';
 ╚═══════════════════════════════════════════════════╝
 */
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,27 +21,32 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-
           Container(
             alignment: Alignment.bottomCenter,
-            child: Image.asset(
-              'assets/images/addidas_fit.png',
-              fit: BoxFit.cover,
+            child: Expanded(
+              child: Image.asset(
+                'assets/images/addidas_fit.png',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-           Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(height: 50,),
+              const SizedBox(
+                height: 50,
+              ),
+
               ///logo
               Center(
                 child: Container(
                   alignment: Alignment.topCenter,
-                  height: 300,
-                  width: 300,
+                  height: 212,
+                  width: 212,
                   child: Image.asset('assets/images/app_logo.png'),
                 ),
               ),
+
               ///welcome
               Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -53,54 +60,49 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 80),
+
               ///Sign in Text
               const SizedBox(
                 child: Center(
                   child: // Sign in to your account..
-                  Text(
-                      "Sign in to your account..",
-                      style: TextStyle(
-                          color:  Color(0xff303952),
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Montserrat",
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 14.0
-                      ),
-                      textAlign: TextAlign.left
-                  ),
+                      Text("Sign in to your account..",
+                          style: TextStyle(
+                              color: Color(0xff303952),
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Montserrat",
+                              fontStyle: FontStyle.normal,
+                              fontSize: 14.0),
+                          textAlign: TextAlign.left),
                 ),
               ),
               const SizedBox(height: 20),
               _buildSocialButtons(width: width),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               SizedBox(
                 child: Center(
                   child: // Don't have account? Sign up now
-                  RichText(
-                      text: const TextSpan(
-                          children: [
-                            TextSpan(
-                                style: TextStyle(
-                                    color:  Color(0xff303952),
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: "Montserrat",
-                                    fontStyle:  FontStyle.normal,
-                                    fontSize: 12.0
-                                ),
-                                text: "Don't have account? "),
-                            TextSpan(
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: Color(0xff303952),
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: "Montserrat",
-                                    fontStyle:  FontStyle.normal,
-                                    fontSize: 12.0
-                                ),
-                                text: "Sign up now")
-                          ]
-                      )
-                  ),
+                      RichText(
+                          text: const TextSpan(children: [
+                    TextSpan(
+                        style: TextStyle(
+                            color: Color(0xff303952),
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Montserrat",
+                            fontStyle: FontStyle.normal,
+                            fontSize: 12.0),
+                        text: "Don't have account? "),
+                    TextSpan(
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Color(0xff303952),
+                            fontWeight: FontWeight.w700,
+                            fontFamily: "Montserrat",
+                            fontStyle: FontStyle.normal,
+                            fontSize: 12.0),
+                        text: "Sign up now")
+                  ])),
                 ),
               ),
             ],
@@ -110,35 +112,35 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Column _buildSocialButtons({required double width}){
+  Column _buildSocialButtons({required double width}) {
     return Column(
       children: [
         SocialLoginButton(
             label: "Sign in with Facebook ",
             width: width,
-            onTap: (){
+            onTap: () {
               debugPrint('loggin with Facebook');
             },
-            icon: '',
+            icon: 'facebook_logo',
             color: const Color.fromRGBO(66, 103, 178, 1)),
         SocialLoginButton(
             label: "Sign in using Gmail",
-            onTap: (){
+            onTap: () {
               debugPrint('login with Gmail');
             },
             width: width,
-            icon: '',
+            icon: 'gmail_new_logo',
             color: const Color.fromRGBO(234, 67, 53, 1)),
         SocialLoginButton(
             label: "Sign in using your account",
-            onTap: (){
+            onTap: () {
+              Get.to(HomeScreen());
               debugPrint('login with account');
             },
             width: width,
-            icon: '',
+            icon: 'cs_logo',
             color: const Color.fromRGBO(48, 57, 82, 1)),
       ],
     );
   }
-
 }

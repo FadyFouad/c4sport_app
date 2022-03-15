@@ -38,7 +38,7 @@ class SocialLoginButton extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(4.0),
-                  child: Image.asset('assets/images/cs_logo.png'),
+                  child: Image.asset('assets/images/$icon.png'),
                 ),
                 // Icon(Icons.add_photo_alternate_outlined),
                 Text(label.toUpperCase(), style: const TextStyle(fontSize: 14)),
@@ -50,7 +50,7 @@ class SocialLoginButton extends StatelessWidget {
               // foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
               // backgroundColor: MaterialStateProperty.all<Color>(color),
             ),
-            onPressed: () => onTap),
+            onPressed: onTap),
       ),
     );
   }

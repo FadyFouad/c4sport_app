@@ -1,7 +1,9 @@
 import 'dart:async';
 
-import 'package:c4sport_app/home_screen.dart';
+import 'package:c4sport_app/ui/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 /*
 ╔═══════════════════════════════════════════════════╗
@@ -36,13 +38,12 @@ class _SplashScreenState extends State<SplashScreen> {
           Center(
             child: Padding(
               padding: EdgeInsets.only(bottom: width/2),
-              child: Image.asset('assets/images/app_logo.png'),
+              child: Lottie.asset('assets/loading_lottie.json'),
             ),
           ),
           Container(
-
             alignment: Alignment.bottomCenter,
-            child: Image.asset('assets/images/addidas_fit.png',fit: BoxFit.scaleDown,),
+            child: Image.asset('assets/images/addidas_fit.png',fit: BoxFit.fitWidth,),
           ),
         ],
       ),
@@ -52,10 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
   redirect() async {
     Timer(
       const Duration(seconds: 3),
-      () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
-      ),
+      () => Get.off(const LoginScreen())
     );
   }
 }
