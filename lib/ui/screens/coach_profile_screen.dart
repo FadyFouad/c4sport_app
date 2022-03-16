@@ -1,6 +1,7 @@
 import 'package:c4sport_app/ui/widgets/app_bar.dart';
 import 'package:c4sport_app/ui/widgets/app_drawer.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
+import 'package:c4sport_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -55,22 +56,10 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
-                          Text("Amr Ali El amery",
-                              style: const TextStyle(
-                                  color: whiteColor,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: "Montserrat",
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: 14.0),
-                              textAlign: TextAlign.left),
+                          Text("Amr Ali El amery", style: normalTextStyle_700),
                           // Zayed City, Egypt
                           Text("Zayed City, Egypt",
-                              style: TextStyle(
-                                  color: whiteColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: "Montserrat",
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: 10.0),
+                              style: normalTextStyle_400,
                               textAlign: TextAlign.left),
                         ],
                       ),
@@ -103,7 +92,7 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
                             // WeightLifting
                             _buildLabeledIcon(
                               label: 'WeightLifting',
-                              icon: Icon(Icons.access_alarm_sharp,
+                              icon: const Icon(Icons.access_alarm_sharp,
                                   color: primaryColor),
                             ),
                             const SizedBox(
@@ -114,12 +103,7 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
                             // Amr holds a BS in Physical Education as well as a MS in  Exercise Science and Health Promotion.  He
                             const Text(
                                 "Amr holds a BS in Physical Education as well as a MS in Exercise Science and Health Promotion. He is a Certified Strength and Conditioning Specialist (CSCS). He has a background in health and fitness as well as athletic performance training with over 10 years of certification and experience in the field. His passion for fitness began through his love of sports and developed as a varsity athlete in Weightlifting.",
-                                style: TextStyle(
-                                    color: primaryColor,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "Montserrat",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 12.0),
+                                style: normalTextStyle_500,
                                 textAlign: TextAlign.left),
                             const SizedBox(
                               height: 32,
@@ -128,15 +112,10 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
                             _buildUnorderedListItem(),
                             _buildUnorderedListItem(),
                             _buildUnorderedListItem(),
-                            const Padding(
-                              padding: EdgeInsets.all(16.0),
+                            Padding(
+                              padding:const  EdgeInsets.all(16.0),
                               child: Text("View time slot",
-                                  style: TextStyle(
-                                      color: Color(0xff303952),
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "Montserrat",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 14.0),
+                                  style: normalTextStyle_700.copyWith(color: primaryColor,fontSize: 14),
                                   textAlign: TextAlign.left),
                             ),
                             _buildTitleText(title: 'Other Sports'),
@@ -145,23 +124,23 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
                               children: [
                                 _buildLabeledIcon(
                                   label: 'CrossFit',
-                                  icon: Icon(Icons.access_alarm_sharp,
+                                  icon: const Icon(Icons.access_alarm_sharp,
                                       color: primaryColor),
                                 ),
                                 _buildLabeledIcon(
                                   label: 'Body Building',
-                                  icon: Icon(Icons.access_alarm_sharp,
+                                  icon: const Icon(Icons.access_alarm_sharp,
                                       color: primaryColor),
                                 ),
                                 const SizedBox(),
                               ],
                             ),
                             _buildTitleText(title: 'Training Packages'),
-                            BookingListTileItem(isBooked: false),
-                            BookingListTileItem(isBooked: false),
-                            BookingListTileItem(isBooked: true),
-                            BookingListTileItem(isBooked: false),
-                            BookingListTileItem(isBooked: false),
+                            const BookingListTileItem(isBooked: false),
+                            const BookingListTileItem(isBooked: false),
+                            const BookingListTileItem(isBooked: true),
+                            const BookingListTileItem(isBooked: false),
+                            const BookingListTileItem(isBooked: false),
                           ],
                         ),
                       ),
@@ -173,20 +152,19 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      decoration:const  BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: accentColor,
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(30),
                             topLeft: Radius.circular(30),
                           )),
                       child: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: const Icon(Icons.access_alarm_sharp),
-                          label: const Text('CONNECT'),
+                        onPressed: () {},
+                        icon: const Icon(Icons.access_alarm_sharp),
+                        label: const Text('CONNECT'),
                         style: ElevatedButton.styleFrom(
-                          primary: accentColor,
-                          shadowColor: Colors.transparent
-                        ),
+                            primary: accentColor,
+                            shadowColor: Colors.transparent),
                       ),
                     ),
                   ),
@@ -204,12 +182,8 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
       children: [
         icon,
         Text(label,
-            style: const TextStyle(
-                color: primaryColor,
-                fontWeight: FontWeight.w700,
-                fontFamily: "Poppins",
-                fontStyle: FontStyle.normal,
-                fontSize: 8.0),
+            style: normalTextStyle_700.copyWith(
+                color: primaryColor, fontSize: 8.0),
             textAlign: TextAlign.left),
       ],
     );
@@ -229,13 +203,8 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
             ),
           ),
         ),
-        const Text('BS in Physical Education',
-            style: TextStyle(
-                color: Color(0xff303952),
-                fontWeight: FontWeight.w500,
-                fontFamily: "Montserrat",
-                fontStyle: FontStyle.normal,
-                fontSize: 12.0),
+        Text('BS in Physical Education',
+            style: normalTextStyle_500.copyWith(color: primaryColor),
             textAlign: TextAlign.left),
       ],
     );
@@ -245,12 +214,7 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Text(title,
-          style: TextStyle(
-              color: accentColor,
-              fontWeight: FontWeight.w700,
-              fontFamily: "Montserrat",
-              fontStyle: FontStyle.normal,
-              fontSize: 14.0),
+          style: normalTextStyle_700.copyWith(color: accentColor),
           textAlign: TextAlign.left),
     );
   }
@@ -264,37 +228,22 @@ class BookingListTileItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: const Text("Individual Session",
-          style: TextStyle(
-              color: Color(0xff303952),
-              fontWeight: FontWeight.w700,
-              fontFamily: "Montserrat",
-              fontStyle: FontStyle.normal,
-              fontSize: 16.0),
+      title: Text("Individual Session",
+          style: normalTextStyle_700.copyWith(color: primaryColor,fontSize: 16.0),
           textAlign: TextAlign.left),
-      subtitle: const Text("250 LE/Session",
-          style: TextStyle(
-              color: Color(0xff303952),
-              fontWeight: FontWeight.w400,
-              fontFamily: "Montserrat",
-              fontStyle: FontStyle.normal,
-              fontSize: 14.0),
+      subtitle: Text("250 LE/Session",
+          style: normalTextStyle_400.copyWith(color: primaryColor,fontSize: 14),
           textAlign: TextAlign.left),
       trailing: isBooked
-          ? const TextButton(
+          ? TextButton(
               onPressed: null,
               child: Text("SUBSCRIBED",
-                  style: TextStyle(
-                      color: Color(0xff11ac00),
-                      fontWeight: FontWeight.w700,
-                      fontFamily: "Montserrat",
-                      fontStyle: FontStyle.normal,
-                      fontSize: 12.0),
+                  style: normalTextStyle_700.copyWith(color: const Color(0xff11ac00),fontSize: 12),
                   textAlign: TextAlign.center),
             )
           : ElevatedButton(
               onPressed: () {},
-              child: Text('bookNow'),
+              child: const Text('bookNow'),
               style: ElevatedButton.styleFrom(primary: accentColor)),
     );
   }

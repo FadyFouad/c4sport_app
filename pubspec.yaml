@@ -25,3 +25,26 @@ flutter:
     - assets/loading_lottie.json
     - assets/images/
     - assets/icons/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: font/Poppins_Black.ttf
+        - asset: font/Poppins_BlackItalic.ttf
+        - asset: font/Poppins_Bold.ttf
+        - asset: font/Poppins_BoldItalic.ttf
+        - asset: font/Poppins_ExtraBold.ttf
+        - asset: font/Poppins_ExtraBoldItalic.ttf
+        - asset: font/Poppins_ExtraLight.ttf
+        - asset: font/Poppins_ExtraLightItalic.ttf
+        - asset: font/Poppins_italic.ttf
+        - asset: font/Poppins_light.ttf
+        - asset: font/Poppins_LightItalic.ttf
+        - asset: font/Poppins_Medium.ttf
+        - asset: font/Poppins_MediumItalic.ttf
+        - asset: font/Poppins_Regular.ttf
+        - asset: font/Poppins_SemiBold.ttf
+        - asset: font/Poppins_SemiBoldItalic.ttf
+        - asset: font/Poppins_Thin.ttf
+        - asset: font/Poppins_ThinItalic.ttf
+#          style: italic
