@@ -1,3 +1,4 @@
+import 'package:c4sport_app/ui/screens/authentication/login_with_email_screen.dart';
 import 'package:c4sport_app/ui/screens/home_screen.dart';
 import 'package:c4sport_app/ui/widgets/social_button.dart';
 import 'package:flutter/material.dart';
@@ -126,6 +127,7 @@ class LoginScreen extends StatelessWidget {
         SocialLoginButton(
             label: "Sign in using Gmail",
             onTap: () {
+              Get.to(const HomeScreen());
               debugPrint('login with Gmail');
             },
             width: width,
@@ -134,7 +136,7 @@ class LoginScreen extends StatelessWidget {
         SocialLoginButton(
             label: "Sign in using your account",
             onTap: () {
-              Get.to(HomeScreen());
+              Get.to(const LoginByEmailScreen());
               debugPrint('login with account');
             },
             width: width,
