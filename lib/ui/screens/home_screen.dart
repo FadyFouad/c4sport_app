@@ -1,5 +1,6 @@
 import 'package:c4sport_app/ui/widgets/app_bar.dart';
 import 'package:c4sport_app/ui/widgets/app_drawer.dart';
+import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -23,7 +24,14 @@ class HomeScreen extends StatelessWidget {
             actions: [],
           ),
           body: Container(
-            child: Center(child: Text('Hone')),
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount( crossAxisCount: 2,),
+              itemCount: 11,
+              itemBuilder: (_,index)=> Center(child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(color: index % 3  == 0 ? accentColor :primaryColor,),
+              )),
+            ),
           )),
     );
   }
