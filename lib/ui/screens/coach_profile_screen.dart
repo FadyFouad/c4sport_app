@@ -1,8 +1,10 @@
+import 'package:c4sport_app/ui/screens/authentication/pay_by_card_screen.dart';
 import 'package:c4sport_app/ui/widgets/app_bar.dart';
 import 'package:c4sport_app/ui/widgets/app_drawer.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:c4sport_app/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 /*
 ╔═══════════════════════════════════════════════════╗
@@ -242,7 +244,9 @@ class BookingListTileItem extends StatelessWidget {
                   textAlign: TextAlign.center),
             )
           : ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(PayByCardScreen());
+              },
               child: const Text('bookNow'),
               style: ElevatedButton.styleFrom(primary: accentColor)),
     );
