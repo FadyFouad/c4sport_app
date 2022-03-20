@@ -1,4 +1,9 @@
 import 'package:c4sport_app/ui/screens/home_screen.dart';
+import 'package:c4sport_app/utils/app_colors.dart';
+import 'package:c4sport_app/utils/app_colors.dart';
+import 'package:c4sport_app/utils/app_colors.dart';
+import 'package:c4sport_app/utils/app_colors.dart';
+import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -63,7 +68,7 @@ class LoginByEmailScreen extends StatelessWidget {
                 /// Your sign in details..
                 Text("Your sign in details..",
                     style: const TextStyle(
-                        color: const Color(0xff303952),
+                        color: primaryColor,
                         fontWeight: FontWeight.w400,
                         fontFamily: "Montserrat",
                         fontStyle: FontStyle.normal,
@@ -119,7 +124,7 @@ class LoginByEmailScreen extends StatelessWidget {
                     text: TextSpan(children: [
                       TextSpan(
                           style: const TextStyle(
-                              color: const Color(0xff303952),
+                              color: primaryColor,
                               fontWeight: FontWeight.w400,
                               fontFamily: "Montserrat",
                               fontStyle: FontStyle.normal,
@@ -127,7 +132,7 @@ class LoginByEmailScreen extends StatelessWidget {
                           text: "Forgot your password? "),
                       TextSpan(
                           style: const TextStyle(
-                              color: const Color(0xff303952),
+                              color: primaryColor,
                               fontWeight: FontWeight.w700,
                               fontFamily: "Montserrat",
                               fontStyle: FontStyle.normal,
@@ -141,7 +146,7 @@ class LoginByEmailScreen extends StatelessWidget {
                   text: TextSpan(children: [
                     TextSpan(
                         style: const TextStyle(
-                            color: const Color(0xff303952),
+                            color: primaryColor,
                             fontWeight: FontWeight.w400,
                             fontFamily: "Montserrat",
                             fontStyle: FontStyle.normal,
@@ -149,7 +154,7 @@ class LoginByEmailScreen extends StatelessWidget {
                         text: "Don't have account? "),
                     TextSpan(
                         style: const TextStyle(
-                            color: const Color(0xff303952),
+                            color: primaryColor,
                             fontWeight: FontWeight.w700,
                             fontFamily: "Montserrat",
                             fontStyle: FontStyle.normal,

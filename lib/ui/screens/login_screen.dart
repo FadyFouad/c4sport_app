@@ -1,6 +1,7 @@
 import 'package:c4sport_app/ui/screens/authentication/login_with_email_screen.dart';
 import 'package:c4sport_app/ui/screens/home_screen.dart';
 import 'package:c4sport_app/ui/widgets/social_button.dart';
+import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -68,7 +69,7 @@ class LoginScreen extends StatelessWidget {
                   child: // Sign in to your account..
                       Text("Sign in to your account..",
                           style: TextStyle(
-                              color: Color(0xff303952),
+                              color: primaryColor,
                               fontWeight: FontWeight.w400,
                               fontFamily: "Montserrat",
                               fontStyle: FontStyle.normal,
@@ -88,7 +89,7 @@ class LoginScreen extends StatelessWidget {
                           text: const TextSpan(children: [
                     TextSpan(
                         style: TextStyle(
-                            color: Color(0xff303952),
+                            color: primaryColor,
                             fontWeight: FontWeight.w400,
                             fontFamily: "Montserrat",
                             fontStyle: FontStyle.normal,
@@ -97,7 +98,7 @@ class LoginScreen extends StatelessWidget {
                     TextSpan(
                         style: TextStyle(
                             decoration: TextDecoration.underline,
-                            color: Color(0xff303952),
+                            color: primaryColor,
                             fontWeight: FontWeight.w700,
                             fontFamily: "Montserrat",
                             fontStyle: FontStyle.normal,

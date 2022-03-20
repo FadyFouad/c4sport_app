@@ -150,11 +150,11 @@ class _AgendaScreenState extends State<AgendaScreen> {
                         fontStyle: FontStyle.normal,
                         fontSize: 14.0)),
                 weekNumberStyle:
-                    WeekNumberStyle(backgroundColor: accentColor),
-                appointmentTextStyle: TextStyle(color: Colors.red),
+                    const WeekNumberStyle(backgroundColor: accentColor),
+                appointmentTextStyle: const TextStyle(color: Colors.red),
                 appointmentTimeTextFormat: 'HH:MM',
                 scheduleViewSettings:
-                    ScheduleViewSettings(appointmentItemHeight: 500),
+                    const ScheduleViewSettings(appointmentItemHeight: 500),
                 cellBorderColor: Colors.grey,
 
                 // timeSlotViewSettings: TimeSlotViewSettings(timeFormat: 'HH:MM',
@@ -167,64 +167,73 @@ class _AgendaScreenState extends State<AgendaScreen> {
                   final Appointment appointment =
                       calendarAppointmentDetails.appointments.first;
 
-                  return Container(
-                    width: 300,
-                    height: 300,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: accentColor),
-                      color: whiteColor,
-                    ),
-                    child: Column(
-                      children: [
-                        // Training Buddy
-                        Text("Training Buddy",
-                            style: const TextStyle(
-                                color: const Color(0xfffa8231),
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "SegoeUI",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 10.0),
-                            textAlign: TextAlign.left),
-                        SizedBox(height: 16,),
-                        // Cycling Training Buddy with Ahmed Ali
-                        RichText(
-                            text: TextSpan(children: [
-                          TextSpan(
-                              style: const TextStyle(
-                                  color: const Color(0xff303952),
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: "SegoeUI",
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: 10.0),
-                              text: '${appointment.subject} with '),
-                              const TextSpan(
-                                  style: TextStyle(
-                                      color: Color(0xff303952),
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "SegoeUI",
-                                      fontStyle:  FontStyle.normal,
-                                      fontSize: 10.0
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(8.0,0.0,8.0,8.0),
+                    child: Container(
+                      width: 300,
+                      height: 300,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: accentColor),
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: whiteColor,
+                      ),
+                      child: Column(
+                        children: [
+                          // Training Buddy
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text("Training Buddy",
+                                style: const TextStyle(
+                                    color: const Color(0xfffa8231),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "SegoeUI",
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 10.0),
+                                textAlign: TextAlign.left),
+                          ),
+                          // Cycling Training Buddy with Ahmed Ali
+                          RichText(
+                              text: TextSpan(children: [
+                            TextSpan(
+                                style: const TextStyle(
+                                    color: primaryColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "SegoeUI",
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 10.0),
+                                text: '${appointment.subject} with '),
+                                const TextSpan(
+                                    style: TextStyle(
+                                        color: primaryColor,
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "SegoeUI",
+                                        fontStyle:  FontStyle.normal,
+                                        fontSize: 10.0
+                                    ),
+                                    text: "Ahmed Ali"),
+                          ])),
+                          const Expanded(child: SizedBox()),
+                          Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  border: Border.all(
+                                      color: const Color(0xfffa8231), width: 1),
+                                ),
+                                child: SizedBox(
+                                    // height: 1,
+                                    child: Expanded(
+                                  child: RoundedCornerButton(
+                                    miniWidth: width,
+                                    text: 'text',
+                                    onTap: () {},
+                                    fontSize: 6,
                                   ),
-                                  text: "Ahmed Ali"),
-                        ])),
-                        Expanded(child: SizedBox()),
-                        Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              border: Border.all(
-                                  color: const Color(0xfffa8231), width: 1),
-                            ),
-                            child: SizedBox(
-                                // height: 1,
-                                child: Expanded(
-                              child: RoundedCornerButton(
-                                miniWidth: width,
-                                text: 'text',
-                                onTap: () {},
-                                fontSize: 6,
-                              ),
-                            ))),
-                      ],
+                                ))),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }),

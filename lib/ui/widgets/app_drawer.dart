@@ -1,3 +1,4 @@
+import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -130,7 +131,7 @@ class AppDrawer extends StatelessWidget {
                 padding: EdgeInsets.all(8.0),
                 child: Text(label,
                     style: const TextStyle(
-                        color: Color(0xff303952),
+                        color: primaryColor,
                         fontWeight: FontWeight.w400,
                         fontFamily: "Montserrat",
                         fontStyle: FontStyle.normal,

@@ -39,7 +39,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         leading: InkWell(
           onTap: _handleDrawerButtonEnd,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(14.0),
             child: Image.asset(
               'assets/icons/menu_ico.png',
               height: 24,

@@ -48,7 +48,7 @@ class PayByCardScreen extends StatelessWidget {
           Text(
               "Please Add your card details",
               style: const TextStyle(
-                  color:  const Color(0xff303952),
+                  color:  primaryColor,
                   fontWeight: FontWeight.w300,
                   fontFamily: "Montserrat",
                   fontStyle:  FontStyle.normal,
