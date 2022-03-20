@@ -10,11 +10,12 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
   const CustomAppBar(
-      {Key? key, this.title = '', this.subtitle = '', required this.actions})
+      {Key? key, this.title = '', this.subtitle = '', required this.actions, this.bottom})
       : super(key: key);
 
   final String title;
   final String subtitle;
+  final Widget? bottom;
   final List<Widget> actions;
 
   @override
@@ -38,12 +39,17 @@ class _CustomAppBarState extends State<CustomAppBar> {
         leading: InkWell(
           onTap: _handleDrawerButtonEnd,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(16.0),
             child: Image.asset(
               'assets/icons/menu_ico.png',
+              height: 24,
+              width: 24,
             ),
           ),
         ),
+        bottom: widget.bottom == null ? null : PreferredSize(
+            preferredSize: const Size.fromHeight(48.0),
+            child: widget.bottom!),
         toolbarHeight: kToolbarHeight + 100,
         title: SizedBox(
           height: 100,
@@ -56,7 +62,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   'assets/icons/notifi_ico.png',
                   height: 36,
                 ),
-                SizedBox(width: 4,),
+                SizedBox(
+                  width: 4,
+                ),
                 Image.asset(
                   'assets/icons/store_ico.png',
                   height: 22,

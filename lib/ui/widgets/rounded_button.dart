@@ -15,12 +15,14 @@ class RoundedCornerButton extends StatelessWidget {
   final Color color;
   final VoidCallback onTap;
   final double miniWidth;
+  final double fontSize;
 
   const RoundedCornerButton({
     Key? key,
     required this.text,
     required this.onTap,
     this.miniWidth = 250.0,
+    this.fontSize = 14.0,
     this.color = primaryColor,
   }) : super(key: key);
 
@@ -31,7 +33,7 @@ class RoundedCornerButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text("$text".toUpperCase(),
-                style: const TextStyle(fontSize: 14)),
+                style: TextStyle(fontSize: fontSize)),
           ),
           style: ButtonStyle(
               minimumSize: MaterialStateProperty.all(Size(miniWidth, 50)),

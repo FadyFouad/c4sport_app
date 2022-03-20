@@ -1,3 +1,4 @@
+import 'package:c4sport_app/ui/screens/agenda_widget.dart';
 import 'package:c4sport_app/ui/screens/authentication/login_with_email_screen.dart';
 import 'package:c4sport_app/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
         primarySwatch: Colors.blue,
       ),
-      home: const SplashScreen(),
+      home: const AgendaScreen(),
     );
   }
 }
