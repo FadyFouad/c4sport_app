@@ -240,12 +240,12 @@ class BookingListTileItem extends StatelessWidget {
           ? TextButton(
               onPressed: null,
               child: Text("SUBSCRIBED",
-                  style: normalTextStyle_700.copyWith(color: const Color(0xff11ac00),fontSize: 12),
+                  style: normalTextStyle_700.copyWith(color: greenColor,fontSize: 12),
                   textAlign: TextAlign.center),
             )
           : ElevatedButton(
               onPressed: () {
-                Get.to(PayByCardScreen());
+                Get.to(const PayByCardScreen());
               },
               child: const Text('bookNow'),
               style: ElevatedButton.styleFrom(primary: accentColor)),

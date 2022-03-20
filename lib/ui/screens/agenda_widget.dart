@@ -180,11 +180,11 @@ class _AgendaScreenState extends State<AgendaScreen> {
                       child: Column(
                         children: [
                           // Training Buddy
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
+                          const Padding(
+                            padding:  EdgeInsets.all(16.0),
                             child: Text("Training Buddy",
-                                style: const TextStyle(
-                                    color: const Color(0xfffa8231),
+                                style: TextStyle(
+                                    color: accentColor,
                                     fontWeight: FontWeight.w400,
                                     fontFamily: "SegoeUI",
                                     fontStyle: FontStyle.normal,
@@ -219,7 +219,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
                                   border: Border.all(
-                                      color: const Color(0xfffa8231), width: 1),
+                                      color: accentColor, width: 1),
                                 ),
                                 child: SizedBox(
                                     // height: 1,

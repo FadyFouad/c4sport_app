@@ -48,7 +48,7 @@ class AppDrawer extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
                       border: Border.all(
-                        color: const Color(0xfffa8231),
+                        color: accentColor,
                         width: 2,
                       ),
                     ),
@@ -73,8 +73,8 @@ class AppDrawer extends StatelessWidget {
 
                   /// Edit Profile Details
                   const Text("Edit Profile Details",
-                      style: const TextStyle(
-                          color: const Color(0xfffa8231),
+                      style: TextStyle(
+                          color: accentColor,
                           fontWeight: FontWeight.w400,
                           fontFamily: "Roboto",
                           fontStyle: FontStyle.normal,
@@ -125,7 +125,7 @@ class AppDrawer extends StatelessWidget {
             children: [
               Icon(
                 Icons.access_alarm_sharp,
-                color: Color(0xfffa8231),
+                color: accentColor,
               ),
               Padding(
                 padding: EdgeInsets.all(8.0),
