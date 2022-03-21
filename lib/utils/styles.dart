@@ -29,3 +29,11 @@ const normalTextStyle_700 = TextStyle(
     fontWeight: FontWeight.w700,
     fontStyle: FontStyle.normal,
     fontSize: 14.0);
+
+const darkTextStyle_400 = TextStyle(
+    color: primaryColor,
+    fontWeight: FontWeight.w400,
+    fontFamily: "Montserrat",
+    fontStyle: FontStyle.normal,
+    fontSize: 14.0);
+

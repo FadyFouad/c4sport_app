@@ -4,9 +4,12 @@ import 'package:c4sport_app/ui/widgets/app_bar.dart';
 import 'package:c4sport_app/ui/widgets/app_drawer.dart';
 import 'package:c4sport_app/ui/widgets/rounded_button.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
+import 'package:c4sport_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+
+import '../widgets/drop_down.dart';
 
 /*
 ╔═══════════════════════════════════════════════════╗
@@ -76,8 +79,14 @@ class _AgendaScreenState extends State<AgendaScreen> {
             flex: 9,
             child: SfCalendar(
                 view: CalendarView.day,
-                timeSlotViewSettings: TimeSlotViewSettings(
-                    timeIntervalHeight: 60, timeIntervalWidth: 80),
+                timeSlotViewSettings: const TimeSlotViewSettings(
+                  timeIntervalHeight: 60,
+                  timeIntervalWidth: 80,
+                  // dayFormat: '',
+                  timeTextStyle: normalTextStyle_500,
+                  allDayPanelColor: primaryColor,
+                  // timeRulerSize: 100,
+                ),
                 // allowedViews: _allowedViews,
                 specialRegions: _specialTimeRegions,
                 dataSource: _events,
@@ -105,7 +114,6 @@ class _AgendaScreenState extends State<AgendaScreen> {
                   DateTime? draggingTime = details.droppingTime;
                   Get.snackbar('End', 'End of the Drag');
                 },
-                // showWeekNumber: true,
                 scheduleViewMonthHeaderBuilder: (BuildContext buildContext,
                     ScheduleViewMonthHeaderDetails details) {
                   return Container(
@@ -119,24 +127,24 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 },
                 todayTextStyle: TextStyle(color: whiteColor),
                 todayHighlightColor: accentColor,
+                viewHeaderHeight: 0,
                 backgroundColor: whiteColor,
                 allowViewNavigation: false,
-                headerHeight: 80,
+                headerHeight: 50,
                 headerStyle: const CalendarHeaderStyle(
                     backgroundColor: primaryColor,
                     textStyle: TextStyle(
                         color: whiteColor, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center),
-                headerDateFormat: 'MMMM yyyy',
+                headerDateFormat: 'dd MMMM yyyy',
                 firstDayOfWeek: 1,
-                resourceViewHeaderBuilder: (BuildContext context,
-                    ResourceViewHeaderDetails details) {
+                resourceViewHeaderBuilder:
+                    (BuildContext context, ResourceViewHeaderDetails details) {
                   // if (details.resource.image != null) {
                   return Container(
                       child: Text('${details.resource.displayName}'));
                 },
-                resourceViewSettings:
-                    ResourceViewSettings(showAvatar: false),
+                resourceViewSettings: ResourceViewSettings(showAvatar: false),
                 viewHeaderStyle: const ViewHeaderStyle(
                     dateTextStyle: TextStyle(
                         color: primaryColor,
@@ -151,14 +159,40 @@ class _AgendaScreenState extends State<AgendaScreen> {
                         fontSize: 14.0)),
                 weekNumberStyle:
                     const WeekNumberStyle(backgroundColor: accentColor),
-                appointmentTextStyle: const TextStyle(color: Colors.red),
+                appointmentTextStyle: const TextStyle(color: accentColor),
                 appointmentTimeTextFormat: 'HH:MM',
+                showWeekNumber: false,
+                timeRegionBuilder: (BuildContext context,
+                    TimeRegionDetails timeRegionDetails) {
+                  return Container(
+                    margin: EdgeInsets.all(1),
+                    alignment: Alignment.center,
+                    child: Text(
+                      timeRegionDetails.region.text!,
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                        gradient: LinearGradient(
+                            colors: [
+                              timeRegionDetails.region.color!,
+                              Colors.cyan
+                            ],
+                            begin: Alignment.centerRight,
+                            end: Alignment.centerLeft)),
+                  );
+                },
+                selectionDecoration: BoxDecoration(
+                  color: Colors.transparent,
+                  border: Border.all(
+                      color: const Color.fromARGB(255, 68, 140, 255), width: 2),
+                  borderRadius: const BorderRadius.all(Radius.circular(4)),
+                  shape: BoxShape.rectangle,
+                ),
                 scheduleViewSettings:
                     const ScheduleViewSettings(appointmentItemHeight: 500),
                 cellBorderColor: Colors.grey,
-
-                // timeSlotViewSettings: TimeSlotViewSettings(timeFormat: 'HH:MM',
-                // ),
                 viewNavigationMode: ViewNavigationMode.none,
                 onViewChanged: (ViewChangedDetails details) {},
                 appointmentBuilder: (BuildContext context,
@@ -168,7 +202,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                       calendarAppointmentDetails.appointments.first;
 
                   return Padding(
-                    padding: const EdgeInsets.fromLTRB(8.0,0.0,8.0,8.0),
+                    padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
                     child: Container(
                       width: 300,
                       height: 300,
@@ -181,7 +215,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                         children: [
                           // Training Buddy
                           const Padding(
-                            padding:  EdgeInsets.all(16.0),
+                            padding: EdgeInsets.all(16.0),
                             child: Text("Training Buddy",
                                 style: TextStyle(
                                     color: accentColor,
@@ -202,15 +236,14 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                     fontStyle: FontStyle.normal,
                                     fontSize: 10.0),
                                 text: '${appointment.subject} with '),
-                                const TextSpan(
-                                    style: TextStyle(
-                                        color: primaryColor,
-                                        fontWeight: FontWeight.w700,
-                                        fontFamily: "SegoeUI",
-                                        fontStyle:  FontStyle.normal,
-                                        fontSize: 10.0
-                                    ),
-                                    text: "Ahmed Ali"),
+                            const TextSpan(
+                                style: TextStyle(
+                                    color: primaryColor,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: "SegoeUI",
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 10.0),
+                                text: "Ahmed Ali"),
                           ])),
                           const Expanded(child: SizedBox()),
                           Padding(
@@ -218,19 +251,17 @@ class _AgendaScreenState extends State<AgendaScreen> {
                             child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(30),
-                                  border: Border.all(
-                                      color: accentColor, width: 1),
+                                  border:
+                                      Border.all(color: accentColor, width: 1),
                                 ),
                                 child: SizedBox(
-                                    // height: 1,
-                                    child: Expanded(
-                                  child: RoundedCornerButton(
-                                    miniWidth: width,
-                                    text: 'text',
-                                    onTap: () {},
-                                    fontSize: 6,
-                                  ),
-                                ))),
+                                    height: 28,
+                                    child: RoundedCornerButton(
+                                      miniWidth: width,
+                                      text: 'text',
+                                      onTap: () {},
+                                      fontSize: 6,
+                                    ))),
                           ),
                         ],
                       ),
@@ -240,7 +271,187 @@ class _AgendaScreenState extends State<AgendaScreen> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                  context: context,
+                  backgroundColor: whiteColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30)),
+                  ),
+                  builder: (_) {
+                    return Container(
+                      height: height * .8,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListView(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Divider(
+                                  thickness: 2,
+                                  indent: width / 3,
+                                  endIndent: width / 3),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Choose Coach",
+                                  style: const TextStyle(
+                                      color: const Color(0xff303952),
+                                      fontWeight: FontWeight.w700,
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: 12.0),
+                                ),
+                                SizedBox(
+                                  width: width * .6,
+                                  child: CustomDropDown(
+                                    isPanDown: false,
+                                    isBackPressedOrTouchedOutSide: true,
+                                    // _isBackPressedOrTouchedOutSide,
+                                    dropDownBGColor: Colors.white,
+                                    dropDownOverlayBGColor: Colors.transparent,
+                                    padding: 8,
+                                    dropDownIcon: Icon(
+                                      Icons.arrow_drop_down,
+                                      color: Colors.grey,
+                                      size: 24,
+                                    ),
+                                    elevation: 1,
+                                    dropDownBorderRadius: 10,
+                                    dropDownTopBorderRadius: 10,
+                                    dropDownBottomBorderRadius: 10,
+                                    dropDownIconBGColor: Colors.transparent,
+                                    dropDownList: const [
+                                      'Amr Ali El amery (3 Sessions)',
+                                      'Amr Ali El Amery (6 Sessions)',
+                                      'Hend Mousa',
+                                    ],
+                                    selectedItem: 'Coach Name',
+                                    numOfListItemToShow: 5,
+                                    selectedItemTextStyle: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal),
+                                    dropDownListTextStyle: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 15,
+                                        backgroundColor: Colors.transparent),
+                                    onDropDownItemClick: (selectedItem) {
+                                      // _selectedItem = selectedItem;
+                                    },
+                                    dropStateChanged: (isOpened) {
+                                      // _isDropDownOpened = isOpened;
+                                      // if (!isOpened) {
+                                      // _isBackPressedOrTouchedOutSide = false;
+                                      // }
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 24.0),
+                              child: Expanded(
+                                child: SizedBox(
+                                  height: height * .6,
+                                  child: SfCalendar(
+                                    view: CalendarView.month,
+                                    timeSlotViewSettings:
+                                        const TimeSlotViewSettings(
+                                      timeIntervalHeight: 30,
+                                      timeIntervalWidth: 30,
+                                      // dayFormat: '',
+                                      timeTextStyle: normalTextStyle_500,
+                                      allDayPanelColor: primaryColor,
+                                      timeRulerSize: 100,
+                                    ),
+                                    // allowedViews: _allowedViews,
+                                    showDatePickerButton: false,
+                                    showCurrentTimeIndicator: false,
+                                    allowAppointmentResize: false,
+                                    showNavigationArrow: true,
+                                    viewHeaderHeight: 100,
+                                    todayTextStyle:
+                                        TextStyle(color: whiteColor),
+                                    todayHighlightColor: accentColor,
+                                    backgroundColor: whiteColor,
+                                    allowViewNavigation: false,
+                                    headerStyle: const CalendarHeaderStyle(
+                                        backgroundColor: whiteColor,
+                                        textStyle: TextStyle(
+                                            color: primaryColor,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center),
+                                    headerDateFormat: 'MMMM yyyy',
+                                    firstDayOfWeek: 1,
+                                    monthViewSettings: const MonthViewSettings(
+                                      dayFormat: 'EEE',
+                                      agendaItemHeight: 30,
+                                      // monthCellStyle: MonthCellStyle(
+                                      //     textStyle: TextStyle(
+                                      //         fontStyle: FontStyle.normal,
+                                      //         fontSize: 15,
+                                      //         color: Colors.black),
+                                      //     trailingDatesTextStyle: TextStyle(
+                                      //         fontStyle: FontStyle.normal,
+                                      //         fontSize: 15,
+                                      //         color: Colors.black),
+                                      //     leadingDatesTextStyle: TextStyle(
+                                      //         fontStyle: FontStyle.normal,
+                                      //         fontSize: 15,
+                                      //         color: Colors.black),
+                                      //     backgroundColor: Colors.red,
+                                      //     todayBackgroundColor: Colors.blue,
+                                      //     leadingDatesBackgroundColor:
+                                      //         Colors.grey,
+                                      //     trailingDatesBackgroundColor:
+                                      //         Colors.grey),
+                                    ),
+                                    viewHeaderStyle: const ViewHeaderStyle(
+                                        dateTextStyle: TextStyle(
+                                            color: primaryColor,
+                                            fontWeight: FontWeight.w700,
+                                            fontStyle: FontStyle.normal,
+                                            fontSize: 16.0),
+                                        // backgroundColor: primaryColor,
+                                        dayTextStyle: TextStyle(
+                                            color: primaryColor,
+                                            fontWeight: FontWeight.w700,
+                                            fontStyle: FontStyle.normal,
+                                            fontSize: 14.0)),
+                                    weekNumberStyle: const WeekNumberStyle(
+                                        backgroundColor: accentColor),
+                                    appointmentTextStyle:
+                                        const TextStyle(color: accentColor),
+                                    appointmentTimeTextFormat: 'HH:MM',
+                                    showWeekNumber: false,
+                                    selectionDecoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      border: Border.all(
+                                          color: const Color.fromARGB(
+                                              255, 68, 140, 255),
+                                          width: 2),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(4)),
+                                      shape: BoxShape.rectangle,
+                                    ),
+                                    cellBorderColor: Colors.transparent,
+                                    viewNavigationMode: ViewNavigationMode.none,
+                                    onViewChanged:
+                                        (ViewChangedDetails details) {},
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  });
+            },
             backgroundColor: accentColor,
             child: Icon(Icons.add)),
       ),

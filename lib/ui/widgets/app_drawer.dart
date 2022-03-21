@@ -1,4 +1,5 @@
 import 'package:c4sport_app/utils/app_colors.dart';
+import 'package:c4sport_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -34,10 +35,10 @@ class AppDrawer extends StatelessWidget {
                     padding: const EdgeInsets.all(20.0),
                     child: Align(
                       child: InkWell(
-                        onTap: (){
+                        onTap: () {
                           Navigator.pop(context);
                         },
-                        child: Icon(Icons.close),
+                        child: const Icon(Icons.close),
                       ),
                       alignment: Alignment.topLeft,
                     ),
@@ -59,26 +60,17 @@ class AppDrawer extends StatelessWidget {
                   ),
 
                   /// Rutger Reman
-                  Text("Rutger Reman",
-                      style: const TextStyle(
-                          color: const Color(0xff1a1f2c),
-                          fontWeight: FontWeight.w700,
-                          fontFamily: "Roboto",
-                          fontStyle: FontStyle.normal,
-                          fontSize: 14.0),
-                      textAlign: TextAlign.left),
+                  Text(
+                    "Rutger Reman",
+                    style: normalTextStyle_700.copyWith(color: primaryColor),
+                  ),
                   const SizedBox(
                     height: 5,
                   ),
 
                   /// Edit Profile Details
-                  const Text("Edit Profile Details",
-                      style: TextStyle(
-                          color: accentColor,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Roboto",
-                          fontStyle: FontStyle.normal,
-                          fontSize: 10.0),
+                  Text("Edit Profile Details",
+                      style: normalTextStyle_400.copyWith(color: accentColor),
                       textAlign: TextAlign.left),
 
                   /// Rectangle 16
@@ -123,20 +115,14 @@ class AppDrawer extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Icon(
+              const Icon(
                 Icons.access_alarm_sharp,
                 color: accentColor,
               ),
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Text(label,
-                    style: const TextStyle(
-                        color: primaryColor,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Montserrat",
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14.0),
-                    textAlign: TextAlign.left),
+                    style: darkTextStyle_400, textAlign: TextAlign.left),
               ),
             ],
           ),
