@@ -79,22 +79,22 @@ class _AgendaScreenState extends State<AgendaScreen> {
             flex: 9,
             child: SfCalendar(
                 view: CalendarView.day,
+                showDatePickerButton: false,
+                showCurrentTimeIndicator: true,
+                showWeekNumber: false,
+                allowAppointmentResize: true,
+                showNavigationArrow: true,
+                allowDragAndDrop: true,
+                allowViewNavigation: true,
                 timeSlotViewSettings: const TimeSlotViewSettings(
                   timeIntervalHeight: 60,
                   timeIntervalWidth: 80,
-                  // dayFormat: '',
                   timeTextStyle: normalTextStyle_500,
                   allDayPanelColor: primaryColor,
                   // timeRulerSize: 100,
                 ),
-                // allowedViews: _allowedViews,
                 specialRegions: _specialTimeRegions,
                 dataSource: _events,
-                showDatePickerButton: false,
-                showCurrentTimeIndicator: false,
-                allowAppointmentResize: false,
-                showNavigationArrow: true,
-                allowDragAndDrop: true,
                 dragAndDropSettings: DragAndDropSettings(
                   allowNavigation: true,
                   allowScroll: true,
@@ -129,7 +129,6 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 todayHighlightColor: accentColor,
                 viewHeaderHeight: 0,
                 backgroundColor: whiteColor,
-                allowViewNavigation: false,
                 headerHeight: 50,
                 headerStyle: const CalendarHeaderStyle(
                     backgroundColor: primaryColor,
@@ -161,7 +160,6 @@ class _AgendaScreenState extends State<AgendaScreen> {
                     const WeekNumberStyle(backgroundColor: accentColor),
                 appointmentTextStyle: const TextStyle(color: accentColor),
                 appointmentTimeTextFormat: 'HH:MM',
-                showWeekNumber: false,
                 timeRegionBuilder: (BuildContext context,
                     TimeRegionDetails timeRegionDetails) {
                   return Container(
@@ -190,10 +188,12 @@ class _AgendaScreenState extends State<AgendaScreen> {
                   borderRadius: const BorderRadius.all(Radius.circular(4)),
                   shape: BoxShape.rectangle,
                 ),
+
+
                 scheduleViewSettings:
                     const ScheduleViewSettings(appointmentItemHeight: 500),
                 cellBorderColor: Colors.grey,
-                viewNavigationMode: ViewNavigationMode.none,
+                viewNavigationMode: ViewNavigationMode.snap,
                 onViewChanged: (ViewChangedDetails details) {},
                 appointmentBuilder: (BuildContext context,
                     CalendarAppointmentDetails calendarAppointmentDetails) {
