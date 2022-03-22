@@ -35,15 +35,20 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Stack(
         children: [
+          ///loading_animation
           Center(
             child: Padding(
-              padding: EdgeInsets.only(bottom: width/2),
-              child: Lottie.asset('assets/loading_lottie.json'),
-            ),
+                padding: EdgeInsets.only(bottom: width / 2),
+                child: Lottie.asset('assets/loading_lottie.json')),
           ),
+
+          ///addidas_fit background
           Container(
             alignment: Alignment.bottomCenter,
-            child: Image.asset('assets/images/addidas_fit.png',fit: BoxFit.fitWidth,),
+            child: Image.asset(
+              'assets/images/addidas_fit.png',
+              fit: BoxFit.fitWidth,
+            ),
           ),
         ],
       ),
@@ -51,9 +56,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   redirect() async {
-    Timer(
-      const Duration(seconds: 3),
-      () => Get.off(const LoginScreen())
-    );
+    Timer(const Duration(seconds: 3), () => Get.off(const LoginScreen()));
   }
 }

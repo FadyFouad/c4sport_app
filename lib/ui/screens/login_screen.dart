@@ -1,5 +1,5 @@
 import 'package:c4sport_app/ui/screens/authentication/login_with_email_screen.dart';
-import 'package:c4sport_app/ui/screens/home_screen.dart';
+import 'package:c4sport_app/ui/screens/coach_list_screen.dart';
 import 'package:c4sport_app/ui/widgets/social_button.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -35,9 +35,7 @@ class LoginScreen extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 50,
-              ),
+              const SizedBox(height: 50),
 
               ///logo
               Center(
@@ -61,6 +59,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
+
               const SizedBox(height: 80),
 
               ///Sign in Text
@@ -77,11 +76,13 @@ class LoginScreen extends StatelessWidget {
                           textAlign: TextAlign.left),
                 ),
               ),
+
               const SizedBox(height: 20),
+
               _buildSocialButtons(width: width),
-              const SizedBox(
-                height: 20,
-              ),
+
+              const SizedBox(height: 20),
+
               SizedBox(
                 child: Center(
                   child: // Don't have account? Sign up now

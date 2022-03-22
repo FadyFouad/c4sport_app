@@ -1,4 +1,4 @@
-import 'package:c4sport_app/ui/screens/home_screen.dart';
+import 'package:c4sport_app/ui/screens/coach_list_screen.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
