@@ -1,7 +1,5 @@
 import 'package:c4sport_app/ui/widgets/scroll_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 /*
 ╔═══════════════════════════════════════════════════╗
@@ -11,9 +9,10 @@ import 'package:flutter/rendering.dart';
 ╚═══════════════════════════════════════════════════╝
 */
 
+//ignore: must_be_immutable
 class CustomDropDown extends StatefulWidget {
   /// background [Color] of dropdown, icon, and overLay,
-  final Color dropDownBGColor, dropDownIconBGColor, dropDownOverlayBGColor;
+  final Color? dropDownBGColor, dropDownIconBGColor, dropDownOverlayBGColor;
 
   /// this radius will be used to set the border of drop down
   final double dropDownBorderRadius;
@@ -23,10 +22,10 @@ class CustomDropDown extends StatefulWidget {
 
   /// The list of items the user can select
   /// If the list of items is null then an empty list will be shown
-  final List<String> dropDownList;
+  final List<String>? dropDownList;
 
   /// this variable is used to close the drop down is user touch outside or by back pressed
-  bool isBackPressedOrTouchedOutSide;
+  bool? isBackPressedOrTouchedOutSide;
 
   /// this func is used to maintain the open and close state of drop down
   Function? dropStateChanged;
@@ -45,7 +44,7 @@ class CustomDropDown extends StatefulWidget {
   double dropDownBottomBorderRadius;
 
   /// thi variable is used to detect panDown event of scaffold body
-  bool isPanDown;
+  bool? isPanDown;
 
   /// user can provide any elevation as per his choice
   double elevation;
@@ -66,28 +65,28 @@ class CustomDropDown extends StatefulWidget {
   /// user can define how many items of list would be shown when drop down opens, by default we set it's value to '4'
   int numOfListItemToShow;
 
-  CustomDropDown({
+   CustomDropDown({Key? key,
     required this.dropDownList,
-    this.isPanDown: false,
-    this.dropDownBGColor: Colors.white,
-    this.dropDownIconBGColor: Colors.transparent,
-    this.dropDownOverlayBGColor: Colors.white,
-    this.dropDownBorderRadius: 0,
-    this.dropDownIcon: const Icon(Icons.arrow_drop_down),
+    this.isPanDown= false,
+    this.dropDownBGColor= Colors.white,
+    this.dropDownIconBGColor= Colors.transparent,
+    this.dropDownOverlayBGColor= Colors.white,
+    this.dropDownBorderRadius= 0,
+    this.dropDownIcon= const Icon(Icons.arrow_drop_down),
     this.onDropDownItemClick,
-    this.isBackPressedOrTouchedOutSide: false,
+    this.isBackPressedOrTouchedOutSide= false,
     this.dropStateChanged,
-    this.dropDownBottomBorderRadius: 50,
-    this.dropDownTopBorderRadius: 50,
-    this.selectedItem: '',
-    this.selectedItemTextStyle: const TextStyle(
+    this.dropDownBottomBorderRadius= 50,
+    this.dropDownTopBorderRadius= 50,
+    this.selectedItem= '',
+    this.selectedItemTextStyle= const TextStyle(
         color: Colors.black, fontSize: 16, fontWeight: FontWeight.normal),
-    this.dropDownListTextStyle: const TextStyle(
+    this.dropDownListTextStyle= const TextStyle(
         color: Colors.grey, fontSize: 15, backgroundColor: Colors.transparent),
-    this.elevation: 5,
-    this.padding: 8,
-    this.numOfListItemToShow: 4,
-  });
+    this.elevation= 5,
+    this.padding= 8,
+    this.numOfListItemToShow= 4,
+  }) : super(key: key);
 
   @override
   _CustomDropDownState createState() {
@@ -118,13 +117,13 @@ class _CustomDropDownState extends State<CustomDropDown>
   @override
   Widget build(BuildContext context) {
     if (widget.isBackPressedOrTouchedOutSide != null &&
-        widget.isBackPressedOrTouchedOutSide &&
+        widget.isBackPressedOrTouchedOutSide! &&
         _isDropdownOpened) {
       _openAndCloseDrawer();
       widget.isBackPressedOrTouchedOutSide = false;
     }
-    if (widget.isPanDown) {
-      Future.delayed(Duration(milliseconds: 100), () {
+    if (widget.isPanDown!) {
+      Future.delayed(const Duration(milliseconds: 100), () {
         widget.isPanDown = false;
       });
     }
@@ -143,9 +142,9 @@ class _CustomDropDownState extends State<CustomDropDown>
       child: GestureDetector(
         key: _gestureDetectorGlobalKey,
         onTap: () {
-          if (_isFirstTime || (widget.isPanDown != null && !widget.isPanDown)) {
+          if (_isFirstTime || (widget.isPanDown != null && !widget.isPanDown!)) {
             setState(() {
-              if (widget.isPanDown) {
+              if (widget.isPanDown!) {
                 widget.isPanDown = false;
               }
               _isFirstTime = false;
@@ -180,10 +179,10 @@ class _CustomDropDownState extends State<CustomDropDown>
                 Expanded(
                   flex: 8,
                   child: Padding(
-                    padding: EdgeInsets.all(4),
+                    padding: const EdgeInsets.all(4),
                     child: Text(
                       widget.selectedItem == ''
-                          ? widget.dropDownList[0]
+                          ? widget.dropDownList![0]
                           : widget.selectedItem,
                       textScaleFactor:
                           MediaQuery.of(context).textScaleFactor > 1.5
@@ -193,13 +192,13 @@ class _CustomDropDownState extends State<CustomDropDown>
                     ),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Flexible(
                   flex: 3,
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Container(
-                      margin: EdgeInsets.only(right: 5),
+                      margin: const EdgeInsets.only(right: 5),
                       color: (widget.dropDownIconBGColor != null)
                           ? widget.dropDownIconBGColor
                           : Colors.transparent,
@@ -239,13 +238,13 @@ class _CustomDropDownState extends State<CustomDropDown>
   }
 
   /// Create the floating dropdown overlay
-  OverlayEntry _createFloatingDropdown(int numOfListItemToShow) {
+  OverlayEntry _createFloatingDropdown(int? numOfListItemToShow) {
     int numOfListItem = numOfListItemToShow != null &&
             numOfListItemToShow <= 10 &&
-            numOfListItemToShow <= widget.dropDownList.length
+            numOfListItemToShow <= widget.dropDownList!.length
         ? numOfListItemToShow
         : 4;
-    double overlayHeight = _listItemHeight * widget.dropDownList.length + 15,
+    double overlayHeight = _listItemHeight * widget.dropDownList!.length + 15,
         fourItemsHeight = numOfListItem * _listItemHeight + 15;
     return OverlayEntry(builder: (context) {
       return Positioned(
@@ -265,10 +264,10 @@ class _CustomDropDownState extends State<CustomDropDown>
             child: DropDownOverlay(
               itemHeight: _gestureDetectorHeight,
               dropDownList:
-                  (widget.dropDownList != null) ? widget.dropDownList : [],
+                  (widget.dropDownList != null) ? widget.dropDownList! : [],
               overlayBGColor: (widget.dropDownOverlayBGColor != null)
-                  ? widget.dropDownOverlayBGColor
-                  : widget.dropDownBGColor,
+                  ? widget.dropDownOverlayBGColor!
+                  : widget.dropDownBGColor!,
               dropDownItemClick: _dropDownItemClickListener,
               dropDownBorderRadius: widget.dropDownBottomBorderRadius,
               dropDownListTextStyle: widget.dropDownListTextStyle,
@@ -320,13 +319,13 @@ class _CustomDropDownState extends State<CustomDropDown>
   /// this changes the whole drop down width when orientation changes from portrait to landscape or vise versa
   @override
   void didChangeMetrics() {
-    Orientation _orientation = MediaQuery.of(context).orientation;
+    // Orientation _orientation = MediaQuery.of(context).orientation;
     if (_isDropdownOpened) {
       _openAndCloseDrawer();
       _openAndCloseDrawer();
     }
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      _orientation = MediaQuery.of(context).orientation;
+      // _orientation = MediaQuery.of(context).orientation;
       if (_isDropdownOpened) {
         _openAndCloseDrawer();
         _openAndCloseDrawer();
@@ -354,29 +353,34 @@ class _CustomDropDownState extends State<CustomDropDown>
 /// This menu has a [dropDownItemClick] callback, used to
 /// pass upwards the on value changed event, from his children
 /// to the [CustomDropDown].
-class DropDownOverlay extends StatelessWidget {
-  final Function dropDownItemClick;
+class DropDownOverlay extends StatefulWidget {
+  final Function? dropDownItemClick;
   final List<String> dropDownList;
   final double itemHeight;
   final Color overlayBGColor;
   final double dropDownBorderRadius;
-  final Function onOverlayOpen;
+  final Function? onOverlayOpen;
   final TextStyle dropDownListTextStyle;
 
-  DropDownOverlay(
+  const DropDownOverlay(
       {Key? key,
       this.itemHeight = 0.0,
       required this.dropDownList,
-      this.overlayBGColor: Colors.white,
+      this.overlayBGColor= Colors.white,
       required this.dropDownItemClick,
       this.dropDownBorderRadius = 0.0,
-      this.dropDownListTextStyle: const TextStyle(
+      this.dropDownListTextStyle= const TextStyle(
           color: Colors.grey,
           fontSize: 15,
           backgroundColor: Colors.transparent),
       required this.onOverlayOpen})
       : super(key: key);
 
+  @override
+  State<DropDownOverlay> createState() => _DropDownOverlayState();
+}
+
+class _DropDownOverlayState extends State<DropDownOverlay> {
   GlobalKey _listItemKey = GlobalKey();
 
   double getListItemHeight() {
@@ -388,8 +392,8 @@ class DropDownOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance!.addPostFrameCallback((_) {
-      if (onOverlayOpen != null) {
-        onOverlayOpen(getListItemHeight());
+      if (widget.onOverlayOpen != null) {
+        widget.onOverlayOpen!(getListItemHeight());
       }
     });
     ScrollController _scrollController = ScrollController();
@@ -397,37 +401,37 @@ class DropDownOverlay extends StatelessWidget {
     /// Create the overlay-ed body of the dropdown.
     return Card(
       elevation: 5,
-      margin: EdgeInsets.only(top: 1, bottom: 0),
-      shape: RoundedRectangleBorder(
+      margin: const EdgeInsets.only(top: 1, bottom: 0),
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(0),
             topRight: Radius.circular(0),
             bottomLeft: Radius.circular(10.0),
             bottomRight: Radius.circular(10.0)),
       ),
-      color: overlayBGColor,
+      color: widget.overlayBGColor,
       child: Container(
         transform: Matrix4.translationValues(0, -2.5, 0),
-        padding: EdgeInsets.only(top: 10, bottom: 5),
+        padding: const EdgeInsets.only(top: 10, bottom: 5),
         decoration: BoxDecoration(
           // border: const Border(
           //     left: BorderSide(color: Colors.grey),
           //     bottom: BorderSide(color: Colors.grey),
           //     right: BorderSide(color: Colors.grey)),
           border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(0),
               topRight: Radius.circular(0),
               bottomLeft: Radius.circular(10.0),
               bottomRight: Radius.circular(10.0)),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
                 color: Colors.white,
                 blurRadius: 0,
                 spreadRadius: 0,
                 offset: Offset(1, 3))
           ],
-          color: overlayBGColor,
+          color: widget.overlayBGColor,
         ),
 
         /// this scrollBar is added here to scroll the list is there are a large numbers of items
@@ -444,7 +448,7 @@ class DropDownOverlay extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    for (var x in dropDownList)
+                    for (var x in widget.dropDownList)
                       Container(
                           key: _listItemKey = GlobalKey(),
                           color: Colors.transparent,
@@ -454,7 +458,7 @@ class DropDownOverlay extends StatelessWidget {
                             child: InkWell(
                               splashColor: Colors.black12,
                               child: Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     left: 8, right: 8, top: 4, bottom: 4),
                                 child: Text(
                                   x,
@@ -465,12 +469,12 @@ class DropDownOverlay extends StatelessWidget {
                                           1.5
                                       ? 1.5
                                       : MediaQuery.of(context).textScaleFactor,
-                                  style: dropDownListTextStyle,
+                                  style: widget.dropDownListTextStyle,
                                 ),
                               ),
                               onTap: () {
-                                if (dropDownItemClick != null) {
-                                  dropDownItemClick(x);
+                                if (widget.dropDownItemClick != null) {
+                                  widget.dropDownItemClick!(x);
                                 }
                               },
                             ),

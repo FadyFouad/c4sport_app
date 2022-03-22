@@ -32,7 +32,7 @@ class RoundedCornerButton extends StatelessWidget {
       child: ElevatedButton(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("$text".toUpperCase(),
+            child: Text(text.toUpperCase(),
                 style: TextStyle(fontSize: fontSize)),
           ),
           style: ButtonStyle(

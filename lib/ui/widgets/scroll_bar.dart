@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /*
 ╔═══════════════════════════════════════════════════╗
@@ -21,16 +20,16 @@ class CustomScrollbar extends StatefulWidget {
     required this.child,
     required this.controller,
     this.isAlwaysShown = false,
-    this.scrollbarThickness: 2.0,
+    this.scrollbarThickness= 2.0,
   }) : super(key: key);
 
   final Widget child;
 
-  final ScrollController controller;
+  final ScrollController? controller;
 
   final bool isAlwaysShown;
 
-  final scrollbarThickness;
+  final double scrollbarThickness;
   @override
   _CustomScrollbarState createState() => _CustomScrollbarState();
 }
@@ -90,7 +89,7 @@ class _CustomScrollbarState extends State<CustomScrollbar>
             // Wait one frame and cause an empty scroll event.  This allows the
             // thumb to show immediately when isAlwaysShown is true.  A scroll
             // event is required in order to paint the thumb.
-            widget.controller.position.didUpdateScrollPositionBy(0);
+            widget.controller!.position.didUpdateScrollPositionBy(0);
           }
         });
         break;

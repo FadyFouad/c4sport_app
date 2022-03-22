@@ -1,9 +1,5 @@
 import 'package:c4sport_app/ui/screens/coach_list_screen.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
-import 'package:c4sport_app/utils/app_colors.dart';
-import 'package:c4sport_app/utils/app_colors.dart';
-import 'package:c4sport_app/utils/app_colors.dart';
-import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,10 +17,10 @@ class LoginByEmailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+    // var height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
                 'assets/images/addidas_fit.png',
@@ -66,8 +62,8 @@ class LoginByEmailScreen extends StatelessWidget {
                 const SizedBox(height: 80),
 
                 /// Your sign in details..
-                Text("Your sign in details..",
-                    style: const TextStyle(
+                const Text("Your sign in details..",
+                    style: TextStyle(
                         color: primaryColor,
                         fontWeight: FontWeight.w400,
                         fontFamily: "Montserrat",
@@ -80,7 +76,7 @@ class LoginByEmailScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 8.0, horizontal: 36),
                   child: TextFormField(
                     textAlign: TextAlign.center,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'your email',
                       border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.red, width: 5.0),
@@ -93,7 +89,7 @@ class LoginByEmailScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 8.0, horizontal: 36),
                   child: TextFormField(
                     textAlign: TextAlign.center,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Password',
                       border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.red, width: 5.0),
@@ -121,9 +117,9 @@ class LoginByEmailScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: RichText(
-                    text: TextSpan(children: [
+                    text: const TextSpan(children: [
                       TextSpan(
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: primaryColor,
                               fontWeight: FontWeight.w400,
                               fontFamily: "Montserrat",
@@ -131,7 +127,7 @@ class LoginByEmailScreen extends StatelessWidget {
                               fontSize: 12.0),
                           text: "Forgot your password? "),
                       TextSpan(
-                          style: const TextStyle(
+                          style: TextStyle(
                               color: primaryColor,
                               fontWeight: FontWeight.w700,
                               fontFamily: "Montserrat",
@@ -143,9 +139,9 @@ class LoginByEmailScreen extends StatelessWidget {
                 ),
                 // Don't have account? Sign up now
                 RichText(
-                  text: TextSpan(children: [
+                  text: const TextSpan(children: [
                     TextSpan(
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: primaryColor,
                             fontWeight: FontWeight.w400,
                             fontFamily: "Montserrat",
@@ -153,7 +149,7 @@ class LoginByEmailScreen extends StatelessWidget {
                             fontSize: 12.0),
                         text: "Don't have account? "),
                     TextSpan(
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: primaryColor,
                             fontWeight: FontWeight.w700,
                             fontFamily: "Montserrat",

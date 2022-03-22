@@ -19,7 +19,7 @@ class CoachItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {
-          Get.to(CoachProfileScreen());
+          Get.to(const CoachProfileScreen());
         },
         child: Center(
           child: Card(
@@ -46,7 +46,7 @@ class CoachItemWidget extends StatelessWidget {
                             color: Colors.white,
                             child: Column(
                               children: [
-                                Text(
+                                const Text(
                                   'Mohammed Marzog',
                                   style: TextStyle(
                                     fontSize: 14,
@@ -54,7 +54,7 @@ class CoachItemWidget extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Text(
+                                const Text(
                                   'Zaid City',
                                   style: TextStyle(
                                     fontSize: 10,
@@ -62,7 +62,7 @@ class CoachItemWidget extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Text(
+                                const Text(
                                   'OverAll Rank',
                                   style: TextStyle(
                                     fontSize: 10,
@@ -77,16 +77,16 @@ class CoachItemWidget extends StatelessWidget {
                                   allowHalfRating: true,
                                   itemCount: 5,
                                   itemSize: 15.0,
-                                  itemPadding: EdgeInsets
+                                  itemPadding: const EdgeInsets
                                       .symmetric(
                                       horizontal: 2.0),
                                   itemBuilder: (context, _) =>
-                                      Icon(
+                                  const  Icon(
                                         Icons.star,
                                         color: accentColor,
                                       ),
                                   onRatingUpdate: (rating) {
-                                    print(rating);
+                                    // print(rating);
                                   },
                                 )
                               ],
@@ -111,8 +111,8 @@ class CoachItemWidget extends StatelessWidget {
                                   ),
                                 )
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
+                            const Padding(
+                              padding: EdgeInsets.symmetric(
                                   horizontal: 10.0),
                               child: Text(
                                 'Weight Lifting',
@@ -129,7 +129,7 @@ class CoachItemWidget extends StatelessWidget {
                       Positioned(
                         bottom: 0,
                         right: 0,
-                        child: Container(
+                        child: SizedBox(
                           height: 40,
                           width: 40,
                           child: Stack(

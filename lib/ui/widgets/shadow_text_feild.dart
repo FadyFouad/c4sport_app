@@ -25,8 +25,8 @@ class ShadowTextField extends StatelessWidget {
         left: margin,
         right: margin,
       ),
-      decoration: BoxDecoration(
-        color: Colors.white,
+      decoration: const BoxDecoration(
+        color: whiteColor,
         boxShadow: [
           BoxShadow(
             color: Color(0x29000000),

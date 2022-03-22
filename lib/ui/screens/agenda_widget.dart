@@ -27,7 +27,7 @@ class AgendaScreen extends StatefulWidget {
 }
 
 class _AgendaScreenState extends State<AgendaScreen> {
-  List<CalendarView> _allowedViews = [];
+  // List<CalendarView> _allowedViews = [];
   List<String> _subjectCollection = [];
 
   // List<Color> _colorCollection = [];
@@ -52,12 +52,12 @@ class _AgendaScreenState extends State<AgendaScreen> {
     _addAppointmentDetails();
     _addAppointments();
     _events = _DataSource(_shiftCollection, _employeeCollection);
-    _allowedViews = <CalendarView>[
-      CalendarView.timelineDay,
-      CalendarView.timelineWeek,
-      CalendarView.timelineWorkWeek,
-      CalendarView.timelineMonth,
-    ];
+    // _allowedViews = <CalendarView>[
+    //   CalendarView.timelineDay,
+    //   CalendarView.timelineWeek,
+    //   CalendarView.timelineWorkWeek,
+    //   CalendarView.timelineMonth,
+    // ];
 
     super.initState();
   }
@@ -69,11 +69,11 @@ class _AgendaScreenState extends State<AgendaScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: CustomAppBar(
+        appBar: const CustomAppBar(
           bottom: Text('search Here'),
           actions: [],
         ),
-        drawer: AppDrawer(),
+        drawer: const AppDrawer(),
         body: SafeArea(
           child: Flexible(
             flex: 9,
@@ -95,7 +95,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 ),
                 specialRegions: _specialTimeRegions,
                 dataSource: _events,
-                dragAndDropSettings: DragAndDropSettings(
+                dragAndDropSettings: const DragAndDropSettings(
                   allowNavigation: true,
                   allowScroll: true,
                   autoNavigateDelay: Duration(seconds: 1),
@@ -103,29 +103,29 @@ class _AgendaScreenState extends State<AgendaScreen> {
                   showTimeIndicator: true,
                 ),
                 onDragStart: (AppointmentDragStartDetails details) {
-                  dynamic appointment = details.appointment!;
-                  CalendarResource? resource = details.resource;
+                  // dynamic appointment = details.appointment!;
+                  // CalendarResource? resource = details.resource;
                   Get.snackbar('Start', 'You Started Drag');
                 },
                 onDragEnd: (AppointmentDragEndDetails details) {
-                  dynamic appointment = details.appointment!;
-                  CalendarResource? sourceResource = details.sourceResource;
-                  CalendarResource? targetResource = details.targetResource;
-                  DateTime? draggingTime = details.droppingTime;
+                  // dynamic appointment = details.appointment!;
+                  // CalendarResource? sourceResource = details.sourceResource;
+                  // CalendarResource? targetResource = details.targetResource;
+                  // DateTime? draggingTime = details.droppingTime;
                   Get.snackbar('End', 'End of the Drag');
                 },
-                scheduleViewMonthHeaderBuilder: (BuildContext buildContext,
-                    ScheduleViewMonthHeaderDetails details) {
-                  return Container(
-                    color: Colors.red,
-                    child: Text(
-                      details.date.month.toString() +
-                          'iiii' +
-                          details.date.year.toString(),
-                    ),
-                  );
-                },
-                todayTextStyle: TextStyle(color: whiteColor),
+                // scheduleViewMonthHeaderBuilder: (BuildContext buildContext,
+                //     ScheduleViewMonthHeaderDetails details) {
+                //   return Container(
+                //     color: Colors.red,
+                //     child: Text(
+                //       details.date.month.toString() +
+                //           'iiii' +
+                //           details.date.year.toString(),
+                //     ),
+                //   );
+                // },
+                todayTextStyle: const TextStyle(color: whiteColor),
                 todayHighlightColor: accentColor,
                 viewHeaderHeight: 0,
                 backgroundColor: whiteColor,
@@ -140,10 +140,9 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 resourceViewHeaderBuilder:
                     (BuildContext context, ResourceViewHeaderDetails details) {
                   // if (details.resource.image != null) {
-                  return Container(
-                      child: Text('${details.resource.displayName}'));
+                  return Text(details.resource.displayName);
                 },
-                resourceViewSettings: ResourceViewSettings(showAvatar: false),
+                resourceViewSettings: const ResourceViewSettings(showAvatar: false),
                 viewHeaderStyle: const ViewHeaderStyle(
                     dateTextStyle: TextStyle(
                         color: primaryColor,
@@ -163,15 +162,15 @@ class _AgendaScreenState extends State<AgendaScreen> {
                 timeRegionBuilder: (BuildContext context,
                     TimeRegionDetails timeRegionDetails) {
                   return Container(
-                    margin: EdgeInsets.all(1),
+                    margin: const EdgeInsets.all(1),
                     alignment: Alignment.center,
                     child: Text(
                       timeRegionDetails.region.text!,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
                     decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                        borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                         gradient: LinearGradient(
                             colors: [
                               timeRegionDetails.region.color!,
@@ -274,14 +273,15 @@ class _AgendaScreenState extends State<AgendaScreen> {
             onPressed: () {
               showModalBottomSheet(
                   context: context,
+                  isScrollControlled: true,
                   backgroundColor: whiteColor,
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30),
                         topRight: Radius.circular(30)),
                   ),
                   builder: (_) {
-                    return Container(
+                    return SizedBox(
                       height: height * .8,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -297,10 +297,10 @@ class _AgendaScreenState extends State<AgendaScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
+                                const Text(
                                   "Choose Coach",
-                                  style: const TextStyle(
-                                      color: const Color(0xff303952),
+                                  style: TextStyle(
+                                      color: Color(0xff303952),
                                       fontWeight: FontWeight.w700,
                                       fontStyle: FontStyle.normal,
                                       fontSize: 12.0),
@@ -314,7 +314,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                     dropDownBGColor: Colors.white,
                                     dropDownOverlayBGColor: Colors.transparent,
                                     padding: 8,
-                                    dropDownIcon: Icon(
+                                    dropDownIcon: const Icon(
                                       Icons.arrow_drop_down,
                                       color: Colors.grey,
                                       size: 24,
@@ -331,11 +331,11 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                     ],
                                     selectedItem: 'Coach Name',
                                     numOfListItemToShow: 5,
-                                    selectedItemTextStyle: TextStyle(
+                                    selectedItemTextStyle:const  TextStyle(
                                         color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.normal),
-                                    dropDownListTextStyle: TextStyle(
+                                    dropDownListTextStyle:const  TextStyle(
                                         color: Colors.grey,
                                         fontSize: 15,
                                         backgroundColor: Colors.transparent),
@@ -375,7 +375,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                                     showNavigationArrow: true,
                                     viewHeaderHeight: 100,
                                     todayTextStyle:
-                                        TextStyle(color: whiteColor),
+                                    const TextStyle(color: whiteColor),
                                     todayHighlightColor: accentColor,
                                     backgroundColor: whiteColor,
                                     allowViewNavigation: false,
@@ -453,7 +453,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
                   });
             },
             backgroundColor: accentColor,
-            child: Icon(Icons.add)),
+            child:const  Icon(Icons.add)),
       ),
     );
   }
@@ -481,7 +481,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
   }
 
   void _addResources() {
-    Random random = Random();
+    // Random random = Random();
     for (int i = 0; i < _nameCollection.length; i++) {
       _employeeCollection.add(CalendarResource(
         displayName: _nameCollection[i],
@@ -493,33 +493,33 @@ class _AgendaScreenState extends State<AgendaScreen> {
     }
   }
 
-  void _addSpecialRegions() {
-    final DateTime date = DateTime.now();
-    Random random = Random();
-    for (int i = 0; i < _employeeCollection.length; i++) {
-      _specialTimeRegions.add(TimeRegion(
-          startTime: DateTime(date.year, date.month, date.day, 13, 0, 0),
-          endTime: DateTime(date.year, date.month, date.day, 14, 0, 0),
-          text: 'Lunch',
-          resourceIds: <Object>[_employeeCollection[i].id],
-          recurrenceRule: 'FREQ=DAILY;INTERVAL=1'));
-
-      if (i % 2 == 0) {
-        continue;
-      }
-
-      final DateTime startDate = DateTime(
-          date.year, date.month, date.day, 17 + random.nextInt(7), 0, 0);
-
-      _specialTimeRegions.add(TimeRegion(
-        startTime: startDate,
-        endTime: startDate.add(Duration(hours: 3)),
-        text: 'Not Available',
-        enablePointerInteraction: false,
-        resourceIds: <Object>[_employeeCollection[i].id],
-      ));
-    }
-  }
+  // void _addSpecialRegions() {
+  //   final DateTime date = DateTime.now();
+  //   Random random = Random();
+  //   for (int i = 0; i < _employeeCollection.length; i++) {
+  //     _specialTimeRegions.add(TimeRegion(
+  //         startTime: DateTime(date.year, date.month, date.day, 13, 0, 0),
+  //         endTime: DateTime(date.year, date.month, date.day, 14, 0, 0),
+  //         text: 'Lunch',
+  //         resourceIds: <Object>[_employeeCollection[i].id],
+  //         recurrenceRule: 'FREQ=DAILY;INTERVAL=1'));
+  //
+  //     if (i % 2 == 0) {
+  //       continue;
+  //     }
+  //
+  //     final DateTime startDate = DateTime(
+  //         date.year, date.month, date.day, 17 + random.nextInt(7), 0, 0);
+  //
+  //     _specialTimeRegions.add(TimeRegion(
+  //       startTime: startDate,
+  //       endTime: startDate.add(const Duration(hours: 3)),
+  //       text: 'Not Available',
+  //       enablePointerInteraction: false,
+  //       resourceIds: <Object>[_employeeCollection[i].id],
+  //     ));
+  //   }
+  // }
 
   void _addAppointmentDetails() {
     _subjectCollection = <String>[];
@@ -563,7 +563,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
               DateTime(date.year, date.month, date.day, startHour, 0, 0);
           _shiftCollection.add(Appointment(
               startTime: _shiftStartTime,
-              endTime: _shiftStartTime.add(Duration(hours: 2)),
+              endTime: _shiftStartTime.add(const Duration(hours: 2)),
               subject: _subjectCollection[random.nextInt(8)],
               color: primaryColor,
               startTimeZone: '',

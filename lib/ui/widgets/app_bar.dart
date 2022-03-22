@@ -57,13 +57,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(child: SizedBox()),
+                const Expanded(child: SizedBox()),
                 Image.asset(
                   'assets/icons/notifi_ico.png',
                   height: 36,
                 ),
-                SizedBox(
-                  width: 4,
+                const SizedBox(
+                  width: 4
                 ),
                 Image.asset(
                   'assets/icons/store_ico.png',

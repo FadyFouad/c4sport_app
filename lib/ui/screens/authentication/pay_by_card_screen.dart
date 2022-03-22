@@ -3,7 +3,6 @@ import 'package:c4sport_app/ui/widgets/app_bar.dart';
 import 'package:c4sport_app/ui/widgets/rounded_button.dart';
 import 'package:c4sport_app/ui/widgets/shadow_text_feild.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
-import 'package:c4sport_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,17 +19,17 @@ class PayByCardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+    // var width = MediaQuery.of(context).size.width;
+    // var height = MediaQuery.of(context).size.height;
     return  Scaffold(
-      appBar: CustomAppBar(actions: [],),
+      appBar: const CustomAppBar(actions: [],),
       body:ListView(
         // mainAxisAlignment: MainAxisAlignment.start,
         // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 70,),
+          const SizedBox(height: 70,),
           // Add Card Details
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(10.0),
             child: Text(
                 "Add Card Details",
@@ -45,9 +44,9 @@ class PayByCardScreen extends StatelessWidget {
             ),
           ),
           // Please Add your card details
-          Text(
+          const Text(
               "Please Add your card details",
-              style: const TextStyle(
+              style: TextStyle(
                   color:  primaryColor,
                   fontWeight: FontWeight.w300,
                   fontFamily: "Montserrat",
@@ -56,14 +55,14 @@ class PayByCardScreen extends StatelessWidget {
               ),
               textAlign: TextAlign.center
           ),
-          SizedBox(height: 30,),
+          const SizedBox(height: 30,),
 
           Visibility(
             visible:true,
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               margin: const EdgeInsets.only(left: 16, top: 16, right: 16),
-              child: ShadowTextField(hint: '',),
+              child: const ShadowTextField(hint: '',),
             ),
           ),
           Row(
@@ -75,7 +74,7 @@ class PayByCardScreen extends StatelessWidget {
                     // padding: const EdgeInsets.symmetric(vertical: 8.0),
                     margin:
                     const EdgeInsets.only(left: 47, top: 8,),
-                    child: ShadowTextField(hint: '',margin: 16),
+                    child: const ShadowTextField(hint: '',margin: 16),
                   ),
                 ),
               ),
@@ -83,7 +82,7 @@ class PayByCardScreen extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   margin: const EdgeInsets.only(top: 8, right: 47),
-                  child:ShadowTextField(hint: '',margin: 16,),
+                  child:const ShadowTextField(hint: '',margin: 16,),
                 ),
               ),
             ],
@@ -93,13 +92,13 @@ class PayByCardScreen extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               margin: const EdgeInsets.only(left: 16, top: 8, right: 16),
-              child: ShadowTextField(hint: '',),
+              child: const ShadowTextField(hint: '',),
             ),
           ),
 
           const SizedBox(height: 80,),
           RoundedCornerButton(text: 'PAY', onTap: (){
-            Get.to(AgendaScreen());
+            Get.to(const AgendaScreen());
           }),
           ],
       ),
