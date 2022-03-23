@@ -1,6 +1,7 @@
 import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:c4sport_app/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 /*
 ╔═══════════════════════════════════════════════════╗
@@ -95,19 +96,19 @@ class AppDrawer extends StatelessWidget {
   _buildDrawerList() {
     return Column(
       children: [
-        _buildDrawerItem(label: 'My Sports'),
-        _buildDrawerItem(label: 'Achievements '),
-        _buildDrawerItem(label: 'Messages '),
-        _buildDrawerItem(label: 'My Cart'),
-        _buildDrawerItem(label: 'Coaching'),
-        _buildDrawerItem(label: 'Venues'),
-        _buildDrawerItem(label: 'Sport Health'),
-        _buildDrawerItem(label: 'Settings'),
+        _buildDrawerItem(label: 'My Sports',image: 'sport_ico.svg',isSVG: true),
+        _buildDrawerItem(label: 'Achievements ',image: 'achievments_ico.svg',isSVG: true),
+        _buildDrawerItem(label: 'Messages ',image: 'speech_bubble_ico.png',isSVG: false),
+        _buildDrawerItem(label: 'My Cart',image: 'cart_ico.svg',isSVG: true),
+        _buildDrawerItem(label: 'Coaching',image: 'whistle_ico.png',isSVG: false),
+        _buildDrawerItem(label: 'Venues',image: 'venues_ico.svg',isSVG: true),
+        _buildDrawerItem(label: 'Sport Health',image: 'sport_health_ico.svg',isSVG: true),
+        _buildDrawerItem(label: 'Settings',image: 'settings_ico.png',isSVG: false),
       ],
     );
   }
 
-  _buildDrawerItem({required String label}) {
+  _buildDrawerItem({required String label,required String image , required bool isSVG}) {
     return Column(
       children: [
         Padding(
@@ -115,9 +116,14 @@ class AppDrawer extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Icon(
-                Icons.access_alarm_sharp,
-                color: accentColor,
+              isSVG ? SvgPicture.asset(
+                  'assets/icons/$image',
+                  semanticsLabel: 'Icon'
+              ) : Image.asset(
+                  'assets/icons/$image',
+                  width: 28,
+                  height: 28,
+                  // semanticsLabel: 'Icon'
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),

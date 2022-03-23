@@ -1,3 +1,5 @@
+import 'package:c4sport_app/data/network/coaches_api.dart';
+import 'package:c4sport_app/models/api_response.dart';
 import 'package:c4sport_app/ui/screens/authentication/pay_by_card_screen.dart';
 import 'package:c4sport_app/ui/widgets/app_bar.dart';
 import 'package:c4sport_app/ui/widgets/app_drawer.dart';
@@ -5,6 +7,7 @@ import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:c4sport_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 /*
 ╔═══════════════════════════════════════════════════╗
@@ -22,10 +25,21 @@ class CoachProfileScreen extends StatefulWidget {
 }
 
 class _CoachProfileScreenState extends State<CoachProfileScreen> {
+
+  getCoaches()async{
+    final logger = Logger();
+    ApiResponse response = await CoachesApi().getCoachesList(
+        callback: (q, w, e) {
+      logger.i('q , w , e , ');
+    });
+    logger.i(response);
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
+    getCoaches();
     return SafeArea(
       child: Scaffold(
         drawer: const AppDrawer(),
@@ -82,7 +96,7 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
                           topRight: Radius.circular(30),
                           topLeft: Radius.circular(30),
                         ),
-                        color: whiteColor,
+                        color: Color.fromRGBO(245, 245, 245, 1),
                       ),
                       width: width,
                       height: height * .7,
@@ -114,11 +128,52 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
                             _buildUnorderedListItem(),
                             _buildUnorderedListItem(),
                             _buildUnorderedListItem(),
+                            _buildTitleText(title: 'Schedule'),
+
                             Padding(
-                              padding:const  EdgeInsets.all(16.0),
-                              child: Text("View time slot",
-                                  style: normalTextStyle_700.copyWith(color: primaryColor,fontSize: 14),
-                                  textAlign: TextAlign.left),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 0.0),
+                              child: Column(
+                                children: [
+                                  _buildTimeSlotRow(
+                                    isBold: true,
+                                    day: 'Day',
+                                    from1: 'From',
+                                    to1: 'To',
+                                    from2: 'From',
+                                    to2: 'To',
+                                    isEven: false,
+                                  ),
+                                  _buildTimeSlotRow(
+                                      day: 'Sat',
+                                      from1: '11:00am',
+                                      to1: '1:00am',
+                                      from2: '11:00am',
+                                      to2: '1:00am'),
+                                  _buildTimeSlotRow(
+                                      day: 'Mon',
+                                      from1: '11:00am',
+                                      to1: '1:00am',
+                                      from2: '11:00am',
+                                      to2: '1:00am',
+                                      isEven: false,
+                                  ),
+                                  _buildTimeSlotRow(
+                                      day: 'Wed',
+                                      from1: '11:00am',
+                                      to1: '1:00am',
+                                      from2: '11:00am',
+                                      to2: '1:00am'),
+                                  _buildTimeSlotRow(
+                                      day: 'Fri',
+                                      from1: '11:00am',
+                                      to1: '1:00am',
+                                      from2: '11:00am',
+                                      to2: '1:00am',
+                                    isEven: false,
+                                  ),
+                                ],
+                              ),
                             ),
                             _buildTitleText(title: 'Other Sports'),
                             Row(
@@ -160,13 +215,16 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
                             topRight: Radius.circular(30),
                             topLeft: Radius.circular(30),
                           )),
-                      child: ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: const Icon(Icons.access_alarm_sharp),
-                        label: const Text('CONNECT'),
-                        style: ElevatedButton.styleFrom(
-                            primary: accentColor,
-                            shadowColor: Colors.transparent),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: const Icon(Icons.access_alarm_sharp),
+                          label: const Text('CONNECT'),
+                          style: ElevatedButton.styleFrom(
+                              primary: accentColor,
+                              shadowColor: Colors.transparent),
+                        ),
                       ),
                     ),
                   ),
@@ -175,6 +233,40 @@ class _CoachProfileScreenState extends State<CoachProfileScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  _buildTimeSlotRow({
+    required String day,
+    required String from1,
+    required String to1,
+    required String from2,
+    required String to2,
+    bool isEven = true,
+    bool isBold = false,
+  }) {
+    var textStyle = TextStyle(
+      fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+    );
+    return Container(
+      height: isEven ? 50 :30,
+      color: isEven ? whiteColor : lightGreyColor,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          SizedBox(width: 60, child: Text(day,style: textStyle.copyWith(fontWeight: FontWeight.bold),)),
+          SizedBox(width: 60, child: Text(from1,style: textStyle,)),
+          // const Text('to'),
+          SizedBox(width: 60, child: Text(to1,style: textStyle,)),
+          SizedBox(
+              width: 60,
+              height: 50,
+              child: VerticalDivider(color: Colors.black, thickness: 1)),
+          SizedBox(width: 60, child: Text(from2,style: textStyle,)),
+          // const Text('to'),
+          SizedBox(width: 60, child: Text(to2,style: textStyle,)),
+        ],
       ),
     );
   }
@@ -231,16 +323,19 @@ class BookingListTileItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text("Individual Session",
-          style: normalTextStyle_700.copyWith(color: primaryColor,fontSize: 16.0),
+          style:
+              normalTextStyle_700.copyWith(color: primaryColor, fontSize: 16.0),
           textAlign: TextAlign.left),
       subtitle: Text("250 LE/Session",
-          style: normalTextStyle_400.copyWith(color: primaryColor,fontSize: 14),
+          style:
+              normalTextStyle_400.copyWith(color: primaryColor, fontSize: 14),
           textAlign: TextAlign.left),
       trailing: isBooked
           ? TextButton(
               onPressed: null,
               child: Text("SUBSCRIBED",
-                  style: normalTextStyle_700.copyWith(color: greenColor,fontSize: 12),
+                  style: normalTextStyle_700.copyWith(
+                      color: greenColor, fontSize: 12),
                   textAlign: TextAlign.center),
             )
           : ElevatedButton(

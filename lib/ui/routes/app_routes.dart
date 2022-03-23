@@ -5,3 +5,10 @@
 ║ fady.fouad.a@gmail.com.                           ║
 ╚═══════════════════════════════════════════════════╝
 */
+
+
+class Routes{
+  static const root = '/';
+  static  const splashScreen = '/splash';
+  static  const coachesListScreen = '/coach_list';
+}

@@ -1,4 +1,4 @@
-import 'package:c4sport_app/ui/screens/agenda_widget.dart';
+import 'package:c4sport_app/ui/screens/agenda/agenda_widget.dart';
 import 'package:c4sport_app/ui/widgets/app_bar.dart';
 import 'package:c4sport_app/ui/widgets/rounded_button.dart';
 import 'package:c4sport_app/ui/widgets/shadow_text_feild.dart';

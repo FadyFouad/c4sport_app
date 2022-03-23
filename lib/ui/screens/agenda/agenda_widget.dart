@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-import '../widgets/drop_down.dart';
+import '../../widgets/drop_down.dart';
 
 /*
 ╔═══════════════════════════════════════════════════╗

@@ -1,5 +1,5 @@
 import 'package:c4sport_app/ui/screens/authentication/login_with_email_screen.dart';
-import 'package:c4sport_app/ui/screens/coach_list_screen.dart';
+import 'package:c4sport_app/ui/screens/coaches_list/coach_list_screen.dart';
 import 'package:c4sport_app/ui/widgets/social_button.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
