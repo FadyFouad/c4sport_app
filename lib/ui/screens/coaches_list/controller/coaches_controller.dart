@@ -26,21 +26,14 @@ import 'package:logger/logger.dart';
 */
 
 
-class CoachesController extends GetxController{
+class CoachListController extends GetxController{
 
-  List<CoachModel>? coachesList;
-  getCoachesLis(){
+  var coachesList = List<CoachModel>.empty(growable: true).obs;
 
-  }
 
   @override
   void onInit() async {
-    final logger = Logger();
-    ApiResponse response = await CoachesApi().getCoachesList(
-        callback: (q, w, e) {
-      logger.i('$q , $w , $e , ');
-      print('');
-    });
+   getCoachesList();
   }
   @override
   void onClose() {
@@ -50,5 +43,18 @@ class CoachesController extends GetxController{
   @override
   void onReady() {
 
+  }
+
+  getCoachesList()async{
+    final logger = Logger();
+    ApiResponse response = await CoachesApi().getCoachesList(
+        callback: (status, message, coachesList) {
+          logger.i(status);
+          logger.i(message);
+          logger.i('$coachesList');
+
+        });
+    coachesList.value = response.data as List<CoachModel>;
+    update();
   }
 }

@@ -106,7 +106,7 @@ class LoginByEmailScreen extends StatelessWidget {
                         primary: accentColor,
                       ),
                       onPressed: () {
-                        Get.to(const HomeScreen());
+                        Get.to(const CoachesListScreen());
                       },
                       child: // Rectangle 4
                           Text('submit'.toUpperCase()),

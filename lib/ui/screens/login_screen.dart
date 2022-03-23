@@ -1,3 +1,4 @@
+import 'package:c4sport_app/ui/routes/app_routes.dart';
 import 'package:c4sport_app/ui/screens/authentication/login_with_email_screen.dart';
 import 'package:c4sport_app/ui/screens/coaches_list/coach_list_screen.dart';
 import 'package:c4sport_app/ui/widgets/social_button.dart';
@@ -129,7 +130,7 @@ class LoginScreen extends StatelessWidget {
         SocialLoginButton(
             label: "Sign in using Gmail",
             onTap: () {
-              Get.to(const HomeScreen());
+              Get.toNamed(Routes.coachesListScreen);
               debugPrint('login with Gmail');
             },
             width: width,

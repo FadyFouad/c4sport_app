@@ -1,3 +1,4 @@
+import 'package:c4sport_app/models/coach_model.dart';
 import 'package:c4sport_app/ui/screens/coach_profile_screen.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,9 @@ import 'package:get/get.dart';
 */
 
 class CoachItemWidget extends StatelessWidget {
-  const CoachItemWidget({Key? key}) : super(key: key);
+  const CoachItemWidget({Key? key, required this.coach}) : super(key: key);
+
+  final CoachModel coach;
 
   @override
   Widget build(BuildContext context) {
@@ -46,17 +49,17 @@ class CoachItemWidget extends StatelessWidget {
                             color: Colors.white,
                             child: Column(
                               children: [
-                                const Text(
-                                  'Mohammed Marzog',
-                                  style: TextStyle(
+                                Text(
+                                  coach.name!,
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     color: primaryColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const Text(
-                                  'Zaid City',
-                                  style: TextStyle(
+                                 Text(
+                                  coach.email!,
+                                  style:const TextStyle(
                                     fontSize: 10,
                                     color: primaryColor,
                                     fontWeight: FontWeight.bold,

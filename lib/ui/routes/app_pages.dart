@@ -1,4 +1,7 @@
 import 'package:c4sport_app/ui/routes/app_routes.dart';
+import 'package:c4sport_app/ui/screens/coaches_list/binding/coach_list_binding.dart';
+import 'package:c4sport_app/ui/screens/coaches_list/coach_list_screen.dart';
+import 'package:c4sport_app/ui/screens/login_screen.dart';
 import 'package:c4sport_app/ui/screens/splash_screen.dart';
 import 'package:get/get.dart';
 
@@ -11,10 +14,19 @@ import 'package:get/get.dart';
 */
 
 class AppPages{
-  static final routes = [
+  static final pages = [
     GetPage(
       name: Routes.root,
       page: () => const SplashScreen(),
+    ),
+    GetPage(
+      name: Routes.loginScreen,
+      page: () => LoginScreen(),
+    ),
+    GetPage(
+      name: Routes.coachesListScreen,
+      page: () => CoachesListScreen(),
+      binding: CoachListBinding(),
     ),
   ];
 }

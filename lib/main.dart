@@ -1,4 +1,7 @@
+import 'package:c4sport_app/ui/routes/app_pages.dart';
+import 'package:c4sport_app/ui/routes/app_routes.dart';
 import 'package:c4sport_app/ui/screens/coach_profile_screen.dart';
+import 'package:c4sport_app/ui/screens/coaches_list/binding/coach_list_binding.dart';
 import 'package:c4sport_app/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,7 +23,9 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
         primarySwatch: Colors.blue,
       ),
-      home: const CoachProfileScreen(),
+      initialRoute: Routes.root,
+      initialBinding: CoachListBinding(),
+      getPages: AppPages.pages,
     );
   }
 }

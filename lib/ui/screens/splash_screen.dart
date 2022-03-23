@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:c4sport_app/ui/routes/app_routes.dart';
 import 'package:c4sport_app/ui/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -56,6 +57,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   redirect() async {
-    Timer(const Duration(seconds: 3), () => Get.off(const LoginScreen()));
+    Timer(const Duration(seconds: 3), () => Get.offAndToNamed(Routes.loginScreen));
   }
 }

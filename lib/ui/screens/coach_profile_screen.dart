@@ -1,6 +1,8 @@
 import 'package:c4sport_app/data/network/coaches_api.dart';
 import 'package:c4sport_app/models/api_response.dart';
+import 'package:c4sport_app/models/coach_model.dart';
 import 'package:c4sport_app/ui/screens/authentication/pay_by_card_screen.dart';
+import 'package:c4sport_app/ui/screens/coaches_list/controller/coaches_controller.dart';
 import 'package:c4sport_app/ui/widgets/app_bar.dart';
 import 'package:c4sport_app/ui/widgets/app_drawer.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
@@ -17,29 +19,14 @@ import 'package:logger/logger.dart';
 ╚═══════════════════════════════════════════════════╝
 */
 
-class CoachProfileScreen extends StatefulWidget {
+class CoachProfileScreen extends GetView{
   const CoachProfileScreen({Key? key}) : super(key: key);
-
-  @override
-  State<CoachProfileScreen> createState() => _CoachProfileScreenState();
-}
-
-class _CoachProfileScreenState extends State<CoachProfileScreen> {
-
-  getCoaches()async{
-    final logger = Logger();
-    ApiResponse response = await CoachesApi().getCoachesList(
-        callback: (q, w, e) {
-      logger.i('q , w , e , ');
-    });
-    logger.i(response);
-  }
 
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    getCoaches();
+    // controller.getCoachesList();
     return SafeArea(
       child: Scaffold(
         drawer: const AppDrawer(),

@@ -10,5 +10,6 @@
 class Routes{
   static const root = '/';
   static  const splashScreen = '/splash';
+  static  const loginScreen = '/login_screen';
   static  const coachesListScreen = '/coach_list';
 }
