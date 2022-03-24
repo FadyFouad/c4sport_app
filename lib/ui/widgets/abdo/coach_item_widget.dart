@@ -58,7 +58,7 @@ class CoachItemWidget extends StatelessWidget {
                                   ),
                                 ),
                                  Text(
-                                  coach.email!,
+                                  coach.address!,
                                   style:const TextStyle(
                                     fontSize: 10,
                                     color: primaryColor,

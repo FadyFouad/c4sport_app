@@ -13,6 +13,7 @@ class CoachModel {
     this.id,
     this.name,
     this.email,
+    this.address,
     this.profilePhoto,
     this.coverPhoto,
     this.bio,
@@ -23,19 +24,21 @@ class CoachModel {
 
   CoachModel.fromJson(dynamic json) {
     id = json['id'];
-    name = json['name'];
-    email = json['email'];
-    profilePhoto = json['profilePhoto'];
-    coverPhoto = json['coverPhoto'];
-    bio = json['bio'];
-    sport = json['sport'];
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
+    name = json['name']??'';
+    email = json['email']??'';
+    address = json['address']??'';
+    profilePhoto = json['profilePhoto']??'';
+    coverPhoto = json['coverPhoto']??'';
+    bio = json['bio']??'';
+    sport = json['sport']??'';
+    createdAt = json['createdAt']??'';
+    updatedAt = json['updatedAt']??'';
   }
 
   int? id;
   String? name;
   String? email;
+  String? address;
   String? profilePhoto;
   String? coverPhoto;
   String? bio;
@@ -48,6 +51,7 @@ class CoachModel {
     map['id'] = id;
     map['name'] = name;
     map['email'] = email;
+    map['address'] = address;
     map['profilePhoto'] = profilePhoto;
     map['coverPhoto'] = coverPhoto;
     map['bio'] = bio;
