@@ -13,23 +13,8 @@ import 'package:logger/logger.dart';
 ╚═══════════════════════════════════════════════════╝
 */
 
-/*
-
-==> Network --> data
-
-==> Local (sqflite,shared preference) --> local
-
-==> UI -->
-
-==>
-
-*/
-
-
 class CoachListController extends GetxController{
-
   var coachesList = List<CoachModel>.empty(growable: true).obs;
-
 
   @override
   void onInit() async {
@@ -54,7 +39,11 @@ class CoachListController extends GetxController{
           logger.i('$coachesList');
 
         });
+    if(response.error != null) {
+      Get.snackbar('Error', response.error, backgroundColor: Colors.red);
+    }
     coachesList.value = response.data as List<CoachModel>;
+    // coachesList.value = response.data as List<CoachModel>;
     update();
   }
 }

@@ -50,7 +50,10 @@ class _AgendaScreenState extends State<AgendaScreen> {
     _addResources();
     // _addSpecialRegions();
     _addAppointmentDetails();
-    _addAppointments();
+
+    setState(() {
+      _addAppointments();
+    });
     _events = _DataSource(_shiftCollection, _employeeCollection);
     // _allowedViews = <CalendarView>[
     //   CalendarView.timelineDay,
@@ -75,199 +78,196 @@ class _AgendaScreenState extends State<AgendaScreen> {
         ),
         drawer: const AppDrawer(),
         body: SafeArea(
-          child: Flexible(
-            flex: 9,
-            child: SfCalendar(
-                view: CalendarView.day,
-                showDatePickerButton: false,
-                showCurrentTimeIndicator: true,
-                showWeekNumber: false,
-                allowAppointmentResize: true,
-                showNavigationArrow: true,
-                allowDragAndDrop: true,
-                allowViewNavigation: true,
-                timeSlotViewSettings: const TimeSlotViewSettings(
-                  timeIntervalHeight: 60,
-                  timeIntervalWidth: 80,
-                  timeTextStyle: normalTextStyle_500,
-                  allDayPanelColor: primaryColor,
-                  // timeRulerSize: 100,
-                ),
-                specialRegions: _specialTimeRegions,
-                dataSource: _events,
-                dragAndDropSettings: const DragAndDropSettings(
-                  allowNavigation: true,
-                  allowScroll: true,
-                  autoNavigateDelay: Duration(seconds: 1),
-                  indicatorTimeFormat: 'HH:mm a',
-                  showTimeIndicator: true,
-                ),
-                onDragStart: (AppointmentDragStartDetails details) {
-                  // dynamic appointment = details.appointment!;
-                  // CalendarResource? resource = details.resource;
-                  Get.snackbar('Start', 'You Started Drag');
-                },
-                onDragEnd: (AppointmentDragEndDetails details) {
-                  // dynamic appointment = details.appointment!;
-                  // CalendarResource? sourceResource = details.sourceResource;
-                  // CalendarResource? targetResource = details.targetResource;
-                  // DateTime? draggingTime = details.droppingTime;
-                  Get.snackbar('End', 'End of the Drag');
-                },
-                // scheduleViewMonthHeaderBuilder: (BuildContext buildContext,
-                //     ScheduleViewMonthHeaderDetails details) {
-                //   return Container(
-                //     color: Colors.red,
-                //     child: Text(
-                //       details.date.month.toString() +
-                //           'iiii' +
-                //           details.date.year.toString(),
-                //     ),
-                //   );
-                // },
-                todayTextStyle: const TextStyle(color: whiteColor),
-                todayHighlightColor: accentColor,
-                viewHeaderHeight: 0,
-                backgroundColor: whiteColor,
-                headerHeight: 50,
-                headerStyle: const CalendarHeaderStyle(
-                    backgroundColor: primaryColor,
-                    textStyle: TextStyle(
-                        color: whiteColor, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center),
-                headerDateFormat: 'dd MMMM yyyy',
-                firstDayOfWeek: 1,
-                resourceViewHeaderBuilder:
-                    (BuildContext context, ResourceViewHeaderDetails details) {
-                  // if (details.resource.image != null) {
-                  return Text(details.resource.displayName);
-                },
-                resourceViewSettings: const ResourceViewSettings(showAvatar: false),
-                viewHeaderStyle: const ViewHeaderStyle(
-                    dateTextStyle: TextStyle(
-                        color: primaryColor,
-                        fontWeight: FontWeight.w700,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14.0),
-                    // backgroundColor: primaryColor,
-                    dayTextStyle: TextStyle(
-                        color: primaryColor,
-                        fontWeight: FontWeight.w700,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 14.0)),
-                weekNumberStyle:
-                    const WeekNumberStyle(backgroundColor: accentColor),
-                appointmentTextStyle: const TextStyle(color: accentColor),
-                appointmentTimeTextFormat: 'HH:MM',
-                timeRegionBuilder: (BuildContext context,
-                    TimeRegionDetails timeRegionDetails) {
-                  return Container(
-                    margin: const EdgeInsets.all(1),
-                    alignment: Alignment.center,
-                    child: Text(
-                      timeRegionDetails.region.text!,
-                      style: const TextStyle(color: Colors.black),
-                    ),
+          child: SfCalendar(
+              view: CalendarView.day,
+              showDatePickerButton: false,
+              showCurrentTimeIndicator: true,
+              showWeekNumber: false,
+              allowAppointmentResize: true,
+              showNavigationArrow: true,
+              allowDragAndDrop: true,
+              allowViewNavigation: true,
+              timeSlotViewSettings: const TimeSlotViewSettings(
+                timeIntervalHeight: 60,
+                timeIntervalWidth: 80,
+                timeTextStyle: normalTextStyle_500,
+                allDayPanelColor: primaryColor,
+                // timeRulerSize: 100,
+              ),
+              specialRegions: _specialTimeRegions,
+              dataSource: _events,
+              dragAndDropSettings: const DragAndDropSettings(
+                allowNavigation: true,
+                allowScroll: true,
+                autoNavigateDelay: Duration(seconds: 1),
+                indicatorTimeFormat: 'HH:mm a',
+                showTimeIndicator: true,
+              ),
+              onDragStart: (AppointmentDragStartDetails details) {
+                // dynamic appointment = details.appointment!;
+                // CalendarResource? resource = details.resource;
+                Get.snackbar('Start', 'You Started Drag');
+              },
+              onDragEnd: (AppointmentDragEndDetails details) {
+                // dynamic appointment = details.appointment!;
+                // CalendarResource? sourceResource = details.sourceResource;
+                // CalendarResource? targetResource = details.targetResource;
+                // DateTime? draggingTime = details.droppingTime;
+                Get.snackbar('End', 'End of the Drag');
+              },
+              // scheduleViewMonthHeaderBuilder: (BuildContext buildContext,
+              //     ScheduleViewMonthHeaderDetails details) {
+              //   return Container(
+              //     color: Colors.red,
+              //     child: Text(
+              //       details.date.month.toString() +
+              //           'iiii' +
+              //           details.date.year.toString(),
+              //     ),
+              //   );
+              // },
+              todayTextStyle: const TextStyle(color: whiteColor),
+              todayHighlightColor: accentColor,
+              viewHeaderHeight: 0,
+              backgroundColor: whiteColor,
+              headerHeight: 50,
+              headerStyle: const CalendarHeaderStyle(
+                  backgroundColor: primaryColor,
+                  textStyle: TextStyle(
+                      color: whiteColor, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center),
+              headerDateFormat: 'EEEE dd MMMM yyyy',
+              firstDayOfWeek: 1,
+              resourceViewHeaderBuilder:
+                  (BuildContext context, ResourceViewHeaderDetails details) {
+                // if (details.resource.image != null) {
+                return Text(details.resource.displayName);
+              },
+              resourceViewSettings: const ResourceViewSettings(showAvatar: false),
+              viewHeaderStyle: const ViewHeaderStyle(
+                  dateTextStyle: TextStyle(
+                      color: primaryColor,
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14.0),
+                  // backgroundColor: primaryColor,
+                  dayTextStyle: TextStyle(
+                      color: primaryColor,
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14.0)),
+              weekNumberStyle:
+                  const WeekNumberStyle(backgroundColor: accentColor),
+              appointmentTextStyle: const TextStyle(color: accentColor),
+              appointmentTimeTextFormat: 'HH:MM',
+              timeRegionBuilder: (BuildContext context,
+                  TimeRegionDetails timeRegionDetails) {
+                return Container(
+                  margin: const EdgeInsets.all(1),
+                  alignment: Alignment.center,
+                  child: Text(
+                    timeRegionDetails.region.text!,
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                      gradient: LinearGradient(
+                          colors: [
+                            timeRegionDetails.region.color!,
+                            Colors.cyan
+                          ],
+                          begin: Alignment.centerRight,
+                          end: Alignment.centerLeft)),
+                );
+              },
+              selectionDecoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border.all(
+                    color: const Color.fromARGB(255, 68, 140, 255), width: 2),
+                borderRadius: const BorderRadius.all(Radius.circular(4)),
+                shape: BoxShape.rectangle,
+              ),
+
+
+              scheduleViewSettings:
+                  const ScheduleViewSettings(appointmentItemHeight: 500),
+              cellBorderColor: Colors.grey,
+              viewNavigationMode: ViewNavigationMode.snap,
+              onViewChanged: (ViewChangedDetails details) {},
+              appointmentBuilder: (BuildContext context,
+                  CalendarAppointmentDetails calendarAppointmentDetails) {
+                // if (calendarAppointmentDetails.isMoreAppointmentRegion) {
+                final Appointment appointment =
+                    calendarAppointmentDetails.appointments.first;
+
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
+                  child: Container(
+                    width: 300,
+                    height: 300,
                     decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-                        gradient: LinearGradient(
-                            colors: [
-                              timeRegionDetails.region.color!,
-                              Colors.cyan
-                            ],
-                            begin: Alignment.centerRight,
-                            end: Alignment.centerLeft)),
-                  );
-                },
-                selectionDecoration: BoxDecoration(
-                  color: Colors.transparent,
-                  border: Border.all(
-                      color: const Color.fromARGB(255, 68, 140, 255), width: 2),
-                  borderRadius: const BorderRadius.all(Radius.circular(4)),
-                  shape: BoxShape.rectangle,
-                ),
-
-
-                scheduleViewSettings:
-                    const ScheduleViewSettings(appointmentItemHeight: 500),
-                cellBorderColor: Colors.grey,
-                viewNavigationMode: ViewNavigationMode.snap,
-                onViewChanged: (ViewChangedDetails details) {},
-                appointmentBuilder: (BuildContext context,
-                    CalendarAppointmentDetails calendarAppointmentDetails) {
-                  // if (calendarAppointmentDetails.isMoreAppointmentRegion) {
-                  final Appointment appointment =
-                      calendarAppointmentDetails.appointments.first;
-
-                  return Padding(
-                    padding: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 8.0),
-                    child: Container(
-                      width: 300,
-                      height: 300,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: accentColor),
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: whiteColor,
-                      ),
-                      child: Column(
-                        children: [
-                          // Training Buddy
-                          const Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Text("Training Buddy",
-                                style: TextStyle(
-                                    color: accentColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: "SegoeUI",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 10.0),
-                                textAlign: TextAlign.left),
-                          ),
-                          // Cycling Training Buddy with Ahmed Ali
-                          RichText(
-                              text: TextSpan(children: [
-                            TextSpan(
-                                style: const TextStyle(
-                                    color: primaryColor,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: "SegoeUI",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 10.0),
-                                text: '${appointment.subject} with '),
-                            const TextSpan(
-                                style: TextStyle(
-                                    color: primaryColor,
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: "SegoeUI",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 10.0),
-                                text: "Ahmed Ali"),
-                          ])),
-                          const Expanded(child: SizedBox()),
-                          Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  border:
-                                      Border.all(color: accentColor, width: 1),
-                                ),
-                                child: SizedBox(
-                                    height: 28,
-                                    child: RoundedCornerButton(
-                                      miniWidth: width,
-                                      text: 'text',
-                                      onTap: () {},
-                                      fontSize: 6,
-                                    ))),
-                          ),
-                        ],
-                      ),
+                      border: Border.all(color: accentColor),
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: whiteColor,
                     ),
-                  );
-                }),
-          ),
+                    child: Column(
+                      children: [
+                        // Training Buddy
+                        const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text("Training Buddy",
+                              style: TextStyle(
+                                  color: accentColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "SegoeUI",
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 10.0),
+                              textAlign: TextAlign.left),
+                        ),
+                        // Cycling Training Buddy with Ahmed Ali
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(
+                              style: const TextStyle(
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "SegoeUI",
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 10.0),
+                              text: '${appointment.subject} with '),
+                          const TextSpan(
+                              style: TextStyle(
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: "SegoeUI",
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 10.0),
+                              text: "Ahmed Ali"),
+                        ])),
+                        const Expanded(child: SizedBox()),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                border:
+                                    Border.all(color: accentColor, width: 1),
+                              ),
+                              child: SizedBox(
+                                  height: 28,
+                                  child: RoundedCornerButton(
+                                    miniWidth: width,
+                                    text: 'text',
+                                    onTap: () {},
+                                    fontSize: 6,
+                                  ))),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }),
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -354,95 +354,93 @@ class _AgendaScreenState extends State<AgendaScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 24.0),
-                              child: Expanded(
-                                child: SizedBox(
-                                  height: height * .6,
-                                  child: SfCalendar(
-                                    view: CalendarView.month,
-                                    timeSlotViewSettings:
-                                        const TimeSlotViewSettings(
-                                      timeIntervalHeight: 30,
-                                      timeIntervalWidth: 30,
-                                      // dayFormat: '',
-                                      timeTextStyle: normalTextStyle_500,
-                                      allDayPanelColor: primaryColor,
-                                      timeRulerSize: 100,
-                                    ),
-                                    // allowedViews: _allowedViews,
-                                    showDatePickerButton: false,
-                                    showCurrentTimeIndicator: false,
-                                    allowAppointmentResize: false,
-                                    showNavigationArrow: true,
-                                    viewHeaderHeight: 100,
-                                    todayTextStyle:
-                                    const TextStyle(color: whiteColor),
-                                    todayHighlightColor: accentColor,
-                                    backgroundColor: whiteColor,
-                                    allowViewNavigation: false,
-                                    headerStyle: const CalendarHeaderStyle(
-                                        backgroundColor: whiteColor,
-                                        textStyle: TextStyle(
-                                            color: primaryColor,
-                                            fontWeight: FontWeight.bold),
-                                        textAlign: TextAlign.center),
-                                    headerDateFormat: 'MMMM yyyy',
-                                    firstDayOfWeek: 1,
-                                    monthViewSettings: const MonthViewSettings(
-                                      dayFormat: 'EEE',
-                                      agendaItemHeight: 30,
-                                      // monthCellStyle: MonthCellStyle(
-                                      //     textStyle: TextStyle(
-                                      //         fontStyle: FontStyle.normal,
-                                      //         fontSize: 15,
-                                      //         color: Colors.black),
-                                      //     trailingDatesTextStyle: TextStyle(
-                                      //         fontStyle: FontStyle.normal,
-                                      //         fontSize: 15,
-                                      //         color: Colors.black),
-                                      //     leadingDatesTextStyle: TextStyle(
-                                      //         fontStyle: FontStyle.normal,
-                                      //         fontSize: 15,
-                                      //         color: Colors.black),
-                                      //     backgroundColor: Colors.red,
-                                      //     todayBackgroundColor: Colors.blue,
-                                      //     leadingDatesBackgroundColor:
-                                      //         Colors.grey,
-                                      //     trailingDatesBackgroundColor:
-                                      //         Colors.grey),
-                                    ),
-                                    viewHeaderStyle: const ViewHeaderStyle(
-                                        dateTextStyle: TextStyle(
-                                            color: primaryColor,
-                                            fontWeight: FontWeight.w700,
-                                            fontStyle: FontStyle.normal,
-                                            fontSize: 16.0),
-                                        // backgroundColor: primaryColor,
-                                        dayTextStyle: TextStyle(
-                                            color: primaryColor,
-                                            fontWeight: FontWeight.w700,
-                                            fontStyle: FontStyle.normal,
-                                            fontSize: 14.0)),
-                                    weekNumberStyle: const WeekNumberStyle(
-                                        backgroundColor: accentColor),
-                                    appointmentTextStyle:
-                                        const TextStyle(color: accentColor),
-                                    appointmentTimeTextFormat: 'HH:MM',
-                                    showWeekNumber: false,
-                                    selectionDecoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                      border: Border.all(
-                                          color: const Color.fromARGB(
-                                              255, 68, 140, 255),
-                                          width: 2),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(4)),
-                                      shape: BoxShape.rectangle,
-                                    ),
-                                    cellBorderColor: Colors.transparent,
-                                    viewNavigationMode: ViewNavigationMode.none,
-                                    onViewChanged:
-                                        (ViewChangedDetails details) {},
+                              child: SizedBox(
+                                height: height * .6,
+                                child: SfCalendar(
+                                  view: CalendarView.month,
+                                  timeSlotViewSettings:
+                                      const TimeSlotViewSettings(
+                                    timeIntervalHeight: 30,
+                                    timeIntervalWidth: 30,
+                                    // dayFormat: '',
+                                    timeTextStyle: normalTextStyle_500,
+                                    allDayPanelColor: primaryColor,
+                                    timeRulerSize: 100,
                                   ),
+                                  // allowedViews: _allowedViews,
+                                  showDatePickerButton: false,
+                                  showCurrentTimeIndicator: false,
+                                  allowAppointmentResize: false,
+                                  showNavigationArrow: true,
+                                  viewHeaderHeight: 100,
+                                  todayTextStyle:
+                                  const TextStyle(color: whiteColor),
+                                  todayHighlightColor: accentColor,
+                                  backgroundColor: whiteColor,
+                                  allowViewNavigation: false,
+                                  headerStyle: const CalendarHeaderStyle(
+                                      backgroundColor: whiteColor,
+                                      textStyle: TextStyle(
+                                          color: primaryColor,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center),
+                                  headerDateFormat: 'MMMM yyyy',
+                                  firstDayOfWeek: 1,
+                                  monthViewSettings: const MonthViewSettings(
+                                    dayFormat: 'EEE',
+                                    agendaItemHeight: 30,
+                                    // monthCellStyle: MonthCellStyle(
+                                    //     textStyle: TextStyle(
+                                    //         fontStyle: FontStyle.normal,
+                                    //         fontSize: 15,
+                                    //         color: Colors.black),
+                                    //     trailingDatesTextStyle: TextStyle(
+                                    //         fontStyle: FontStyle.normal,
+                                    //         fontSize: 15,
+                                    //         color: Colors.black),
+                                    //     leadingDatesTextStyle: TextStyle(
+                                    //         fontStyle: FontStyle.normal,
+                                    //         fontSize: 15,
+                                    //         color: Colors.black),
+                                    //     backgroundColor: Colors.red,
+                                    //     todayBackgroundColor: Colors.blue,
+                                    //     leadingDatesBackgroundColor:
+                                    //         Colors.grey,
+                                    //     trailingDatesBackgroundColor:
+                                    //         Colors.grey),
+                                  ),
+                                  viewHeaderStyle: const ViewHeaderStyle(
+                                      dateTextStyle: TextStyle(
+                                          color: primaryColor,
+                                          fontWeight: FontWeight.w700,
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: 16.0),
+                                      // backgroundColor: primaryColor,
+                                      dayTextStyle: TextStyle(
+                                          color: primaryColor,
+                                          fontWeight: FontWeight.w700,
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: 14.0)),
+                                  weekNumberStyle: const WeekNumberStyle(
+                                      backgroundColor: accentColor),
+                                  appointmentTextStyle:
+                                      const TextStyle(color: accentColor),
+                                  appointmentTimeTextFormat: 'HH:MM',
+                                  showWeekNumber: false,
+                                  selectionDecoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                    border: Border.all(
+                                        color: const Color.fromARGB(
+                                            255, 68, 140, 255),
+                                        width: 2),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(4)),
+                                    shape: BoxShape.rectangle,
+                                  ),
+                                  cellBorderColor: Colors.transparent,
+                                  viewNavigationMode: ViewNavigationMode.none,
+                                  onViewChanged:
+                                      (ViewChangedDetails details) {},
                                 ),
                               ),
                             ),
@@ -538,17 +536,10 @@ class _AgendaScreenState extends State<AgendaScreen> {
   void _addAppointments() {
     _shiftCollection = <Appointment>[];
     final Random random = Random();
-    for (int i = 0; i < _employeeCollection.length; i++) {
+    for (int i = 0; i < 3; i++) {
       final List<String> _employeeIds = <String>[
-        _employeeCollection[i].id.toString()
+        // _employeeCollection[i].id.toString()
       ];
-      if (i == _employeeCollection.length - 1) {
-        int index = random.nextInt(5);
-        setState(() {
-          // index = index == i ? index + 1 : index;
-          _employeeIds.add(_employeeCollection[index].id.toString());
-        });
-      }
 
       for (int k = 0; k < 365; k++) {
         if (_employeeIds.length > 1 && k % 2 == 0) {

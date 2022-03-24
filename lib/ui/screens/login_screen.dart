@@ -24,13 +24,12 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+          ///addidas_fit background
           Container(
             alignment: Alignment.bottomCenter,
-            child: Expanded(
-              child: Image.asset(
-                'assets/images/addidas_fit.png',
-                fit: BoxFit.cover,
-              ),
+            child: Image.asset(
+              'assets/images/addidas_fit.png',
+              fit: BoxFit.fitWidth,
             ),
           ),
           Column(
@@ -123,7 +122,7 @@ class LoginScreen extends StatelessWidget {
             label: "Sign in with Facebook ",
             width: width,
             onTap: () {
-              debugPrint('loggin with Facebook');
+              debugPrint('login with Facebook');
             },
             icon: 'facebook_logo',
             color: const Color.fromRGBO(66, 103, 178, 1)),

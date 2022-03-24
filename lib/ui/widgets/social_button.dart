@@ -26,6 +26,12 @@ class SocialLoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final EdgeInsetsGeometry scaledPadding = ButtonStyleButton.scaledPadding(
+      const EdgeInsets.symmetric(horizontal: 0),
+      const EdgeInsets.symmetric(horizontal: 8),
+      const EdgeInsets.symmetric(horizontal: 4),
+      MediaQuery.maybeOf(context)?.textScaleFactor ?? 1,
+    );
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
@@ -34,6 +40,7 @@ class SocialLoginButton extends StatelessWidget {
         height: 40,
         child: ElevatedButton(
             child: Row(
+              mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
@@ -41,13 +48,13 @@ class SocialLoginButton extends StatelessWidget {
                   child: Image.asset('assets/images/$icon.png'),
                 ),
                 // Icon(Icons.add_photo_alternate_outlined),
-                Text(label.toUpperCase(), style: const TextStyle(fontSize: 14)),
+                Text(label, style: const TextStyle(fontSize: 14)),
                 const SizedBox(),
               ],
             ),
             style: ElevatedButton.styleFrom(
               primary: color,
-              // foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              padding: scaledPadding,
               // backgroundColor: MaterialStateProperty.all<Color>(color),
             ),
             onPressed: onTap),

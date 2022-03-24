@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
       ),
       initialRoute: Routes.root,
-      initialBinding: CoachListBinding(),
+      // initialBinding: CoachListBinding(),
       getPages: AppPages.pages,
     );
   }

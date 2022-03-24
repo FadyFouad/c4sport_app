@@ -24,17 +24,22 @@ class CoachesApi {
     )
         callback,
   }) async {
-    var response = await http.get(Uri.parse(coachesListUrl));
-    var jsonResponse = convert.jsonDecode(response.body);
-    var _statusCode = response.statusCode;
-    // logger.i(jsonResponse);
-    List<CoachModel> coachesList = listCoachesFromJson(jsonResponse);
-    callback(_statusCode == 200 || _statusCode == 201,
-        _statusCode == 200 || _statusCode == 201 ? "Success" : "Failed", coachesList);
     ApiResponse apiResponse = ApiResponse();
-    apiResponse.statusCode = _statusCode;
-    apiResponse.data = coachesList;
-
+    try {
+      var response = await http.get(Uri.parse(coachesListUrl));
+      var jsonResponse = convert.jsonDecode(response.body);
+      var _statusCode = response.statusCode;
+      // logger.i(jsonResponse);
+      List<CoachModel> coachesList = listCoachesFromJson(jsonResponse);
+      callback(_statusCode == 200 || _statusCode == 201,
+          _statusCode == 200 || _statusCode == 201 ? "Success" : "Failed",
+          coachesList);
+      apiResponse.statusCode = _statusCode;
+      apiResponse.data = coachesList;
+    }catch(e){
+      apiResponse.error = e.toString();
+      // logger.e(e);
+    }
     return apiResponse;
   }
 }
