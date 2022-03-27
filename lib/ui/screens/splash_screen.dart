@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:c4sport_app/ui/routes/app_routes.dart';
-import 'package:c4sport_app/ui/screens/login_screen.dart';
+import 'package:c4sport_app/ui/screens/authentication/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';

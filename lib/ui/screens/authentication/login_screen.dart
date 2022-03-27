@@ -1,5 +1,6 @@
 import 'package:c4sport_app/ui/routes/app_routes.dart';
 import 'package:c4sport_app/ui/screens/authentication/login_with_email_screen.dart';
+import 'package:c4sport_app/ui/screens/authentication/signup_screen.dart';
 import 'package:c4sport_app/ui/screens/coaches_list/coach_list_screen.dart';
 import 'package:c4sport_app/ui/widgets/social_button.dart';
 import 'package:c4sport_app/utils/app_colors.dart';
@@ -86,26 +87,30 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 child: Center(
                   child: // Don't have account? Sign up now
-                      RichText(
-                          text: const TextSpan(children: [
+                      InkWell(
+                        onTap: (){
+                          Get.to(SignUpScreen());
+                        },
+                        child: RichText(
+                            text: const TextSpan(children: [
                     TextSpan(
-                        style: TextStyle(
-                            color: primaryColor,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Montserrat",
-                            fontStyle: FontStyle.normal,
-                            fontSize: 12.0),
-                        text: "Don't have account? "),
+                          style: TextStyle(
+                              color: primaryColor,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                              fontSize: 12.0),
+                          text: "Don't have account? "),
                     TextSpan(
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: primaryColor,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "Montserrat",
-                            fontStyle: FontStyle.normal,
-                            fontSize: 12.0),
-                        text: "Sign up now")
+                          style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: primaryColor,
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "Montserrat",
+                              fontStyle: FontStyle.normal,
+                              fontSize: 12.0),
+                          text: "Sign up now")
                   ])),
+                      ),
                 ),
               ),
             ],

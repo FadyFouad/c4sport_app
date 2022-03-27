@@ -29,7 +29,8 @@ class CoachesListScreen extends GetView<CoachListController> {
           ),
           body: Obx(() {
             var list = controller.coachesList.value;
-            return list.isEmpty?  const Center(child: CircularProgressIndicator()) :MasonryGridView.count(
+            return list.isEmpty?  const Center(child: CircularProgressIndicator()) :
+            MasonryGridView.count(
               crossAxisCount: crossAxisCount,
               mainAxisSpacing: 2,
               crossAxisSpacing: 4,
